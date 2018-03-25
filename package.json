@@ -1,0 +1,23 @@
+{
+  "name": "votelite",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "cycle-scripts": "2.1.0"
+  },
+  "dependencies": {
+    "@cycle/dom": "18.3.0",
+    "@cycle/run": "3.3.0",
+    "xstream": "11.0.0"
+  },
+  "scripts": {
+    "start": "cycle-scripts start",
+    "test": "cycle-scripts test",
+    "build": "cycle-scripts build",
+    "eject": "cycle-scripts eject"
+  },
+  "cca": {
+    "language": "javascript",
+    "streamLib": "xstream"
+  }
+}
