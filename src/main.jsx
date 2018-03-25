@@ -2,12 +2,12 @@
 import xs from 'xstream'
 
 
-export function App (sources) {
+export default sources => {
   const vdom$ = xs.of(
     <div>Votelite</div>
   )
 
   return {
-    DOM: vdom$
+    DOM: vdom$,
   }
 }
