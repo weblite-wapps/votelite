@@ -1,11 +1,13 @@
+// modules
 import xs from 'xstream'
 
+
 export function App (sources) {
-  const vtree$ = xs.of(
-    <div>My Awesome Cycle.js app</div>
+  const vdom$ = xs.of(
+    <div>Votelite</div>
   )
-  const sinks = {
-    DOM: vtree$
+
+  return {
+    DOM: vdom$
   }
-  return sinks
 }
