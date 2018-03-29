@@ -1,6 +1,5 @@
 // modules
 import xs from 'xstream'
-import isolate from '@cycle/isolate'
 // styles
 import classes from './Header.css'
 
