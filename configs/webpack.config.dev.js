@@ -50,6 +50,28 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(ttf|eot|woff|woff2)$/,
+        loader: "file-loader",
+        options: {
+          name: "fonts/[name].[ext]",
+        },
+      },
+      {
+        test: /\.(css)$/,
+        use: [
+          { loader: 'style-loader' },
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+              localIdentName: '[path][name]__[local]___[hash:base64:5]',
+              sourceMap: true,
+              url: false,
+            },
+          },
+        ],
+      },
+      {
         // We use babel-loader to transipile every .js or .jsx file
         test: /\.jsx?$/,
         loader: 'babel-loader',
@@ -68,7 +90,7 @@ module.exports = {
           presets: [
             [ 'env', {
               'targets': {
-                'browsers': ['last 2 versions']
+                'browsers': ['last 1 versions']
               }
             }]
           ],
