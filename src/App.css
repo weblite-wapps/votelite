@@ -1,0 +1,10 @@
+.root {
+  position: relative;
+  width: 350px;
+  height: 90%;
+  background: #37474F;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}

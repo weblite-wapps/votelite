@@ -12,9 +12,10 @@ import '!style-loader!css-loader!./helper/style/global.css'
 run(App, {
   DOM: makeDOMDriver('#app'),
 
-  props: () => xs.of({
+  state$: () => xs.of({
     choices: ['first choice', 'second child', 'third chice'],
     choice: 2,
     votes: [10, 47, 29],
+    title: 'Votelite',
   }),
 })
