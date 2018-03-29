@@ -4,7 +4,9 @@ import xs from 'xstream'
 
 export default sources => {
   const vdom$ = xs.of(
-    <div>Votelite</div>
+    <div>
+      Vs
+    </div>
   )
 
   return {

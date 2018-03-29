@@ -3,6 +3,9 @@ import { run } from '@cycle/run'
 import { makeDOMDriver } from '@cycle/dom'
 import App from './App.cycle'
 import xs from 'xstream'
+// style
+// import './helper/style/reset.css'
+
 
 
 run(App, {
@@ -10,7 +13,7 @@ run(App, {
 
   props: () => xs.of({
     choices: ['first choice', 'second child', 'third chice'],
-    userChoices: [],
-    votes: [10, 47, 98],
+    choice: 2,
+    votes: [10, 47, 29],
   }),
 })
