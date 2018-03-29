@@ -9,10 +9,10 @@ const { R } = window
 
 
 export default ({ DOM, STORE }) => {
-  const Header$ = HeaderComponent({ DOM, props: STORE.state$.map(R.pick(['title', 'isStatPage'])) }).DOM
+  const { DOM: HeaderDOM$, STORE: HeaderSTORE$ } =
+    HeaderComponent({ DOM, props: STORE.state$.map(R.pick(['title', 'isStatPage'])) })
 
-
-  const vdom$ = Header$.map(Header => {
+  const vdom$ = HeaderDOM$.map(Header => {
     return (
       <div className={classes.root}>
         { Header }
@@ -20,11 +20,8 @@ export default ({ DOM, STORE }) => {
     )
   })
 
-  const store$ = DOM.select('.page-icon').events('click')
-    .mapTo({ type: 'TOGGLE_PAGE' })
-
   return {
     DOM: vdom$,
-    STORE: store$,
+    STORE: HeaderSTORE$,
   }
 }

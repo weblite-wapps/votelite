@@ -5,7 +5,10 @@ import isolate from '@cycle/isolate'
 import classes from './Header.css'
 
 
-export default ({ props }) => {
+export default ({ DOM, props }) => {
+  const store$ = DOM.select('.page-icon').events('click')
+    .mapTo({ type: 'TOGGLE_PAGE' })
+
   const vdom$ = props.map(({ title, isStatPage }) =>
     <div className={classes.root}>
       <span>{ title }</span>
@@ -15,5 +18,6 @@ export default ({ props }) => {
 
   return {
     DOM: vdom$,
+    STORE: store$,
   }
 }
