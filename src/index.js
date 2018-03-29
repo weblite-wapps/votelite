@@ -18,9 +18,10 @@ run(App, {
   DOM: makeDOMDriver('#app'),
 
   STORE: storeCreator(reducers, {
+    question: 'what framework u prefer?',
     choices: ['first choice', 'second child', 'third chice'],
-    choice: 2,
     votes: [10, 47, 29],
+    choice: 2,
     title: 'Votelite',
     isStatPage: false,
   }),
