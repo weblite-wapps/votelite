@@ -17,5 +17,6 @@ run(App, {
     choice: 2,
     votes: [10, 47, 29],
     title: 'Votelite',
+    page: 'vote',
   }),
 })

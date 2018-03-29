@@ -9,7 +9,7 @@ const { R } = window
 
 
 export default ({ DOM, state$ }) => {
-  const Header$ = HeaderComponent({ DOM, props: state$.map(R.prop('title')) }).DOM
+  const Header$ = HeaderComponent({ DOM, props: state$.map(R.pick(['title', 'page'])) }).DOM
 
 
   const vdom$ = Header$.map(Header => {
