@@ -9,7 +9,7 @@ export default ({ DOM, props }) => {
     .mapTo({ type: 'TOGGLE_PAGE' })
 
   const vdom$ = props.map(({ title, isStatPage }) =>
-    <div className={classes.root}>
+    <div key="header" className={classes.root}>
       <span>{ title }</span>
       <i className="page-icon">{ isStatPage ? 'poll' : 'pie_chart' }</i>
     </div>

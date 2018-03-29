@@ -18,7 +18,7 @@ run(App, {
   DOM: makeDOMDriver('#app'),
 
   STORE: storeCreator(reducers, {
-    question: 'what framework u prefer?',
+    question: 'what javascript framework do you prefer?',
     choices: ['first choice', 'second child', 'third chice'],
     votes: [10, 47, 29],
     choice: 2,

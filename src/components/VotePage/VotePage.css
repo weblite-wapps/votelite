@@ -1,0 +1,12 @@
+.root {
+  width: 100%;
+}
+
+.question {
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+  color: #CFD8DC;
+}

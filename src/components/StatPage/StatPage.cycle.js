@@ -7,7 +7,7 @@ export default ({ DOM, props }) => {
   const vdom$ = props
     .map(({ choices, votes }) => R.zip(choices, votes))
     .map(arr =>
-      <div>
+      <div key="stat">
         { arr.map(([choice, vote]) => <div>{ choice } { vote }</div>) }
       </div>
     )
