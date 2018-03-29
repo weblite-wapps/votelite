@@ -1,11 +1,11 @@
 // modules
 import { run } from '@cycle/run'
 import { makeDOMDriver } from '@cycle/dom'
-import Main from './main'
+import App from './App.cycle'
 import xs from 'xstream'
 
 
-run(Main, {
+run(App, {
   DOM: makeDOMDriver('#root'),
 
   props: () => xs.of({
