@@ -8,7 +8,7 @@ import classes from './App.css'
 const { R } = window
 
 
-export default ({ DOM, state$ }) => {
+export default ({ DOM, STORE: { state$ } }) => {
   const Header$ = HeaderComponent({ DOM, props: state$.map(R.pick(['title', 'page'])) }).DOM
 
 
@@ -20,6 +20,13 @@ export default ({ DOM, state$ }) => {
     )
   })
 
+  const store$ = xs
+    .periodic(2000)
+    .take(1)
+    .mapTo({ type: 'CHANGE_PAGE', payload: { page: 'stat' } })
 
-  return { DOM: vdom$ }
+  return {
+    DOM: vdom$,
+    STORE: store$,
+  }
 }
