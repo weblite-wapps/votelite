@@ -1,3 +1,3 @@
 export default {
-  CHANGE_PAGE: (state, { page }) => ({ ...state, page }),
+  TOGGLE_PAGE: state => ({ ...state, isStatPage: !state.isStatPage }),
 }

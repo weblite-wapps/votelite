@@ -8,8 +8,8 @@ import classes from './App.css'
 const { R } = window
 
 
-export default ({ DOM, STORE: { state$ } }) => {
-  const Header$ = HeaderComponent({ DOM, props: state$.map(R.pick(['title', 'page'])) }).DOM
+export default ({ DOM, STORE }) => {
+  const Header$ = HeaderComponent({ DOM, props: STORE.state$.map(R.pick(['title', 'isStatPage'])) }).DOM
 
 
   const vdom$ = Header$.map(Header => {
@@ -20,10 +20,8 @@ export default ({ DOM, STORE: { state$ } }) => {
     )
   })
 
-  const store$ = xs
-    .periodic(2000)
-    .take(1)
-    .mapTo({ type: 'CHANGE_PAGE', payload: { page: 'stat' } })
+  const store$ = DOM.select('.page-icon').events('click')
+    .mapTo({ type: 'TOGGLE_PAGE' })
 
   return {
     DOM: vdom$,

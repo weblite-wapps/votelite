@@ -6,10 +6,10 @@ import classes from './Header.css'
 
 
 export default ({ props }) => {
-  const vdom$ = props.map(({ title, page }) =>
+  const vdom$ = props.map(({ title, isStatPage }) =>
     <div className={classes.root}>
       <span>{ title }</span>
-      <i>{ page === 'vote' ? 'pie_chart' : 'poll' }</i>
+      <i className="page-icon">{ isStatPage ? 'poll' : 'pie_chart' }</i>
     </div>
   )
 
