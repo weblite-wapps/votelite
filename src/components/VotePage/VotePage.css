@@ -1,5 +1,6 @@
 .root {
   width: 100%;
+  overflow: scroll;
 }
 
 .question {
@@ -8,5 +9,51 @@
   font-size: 18px;
   font-weight: bold;
   margin-top: 20px;
+  margin-bottom: 20px;
   color: #CFD8DC;
+}
+
+.choices {
+  width: 100%;
+  padding: 15px;
+}
+
+.choice-root {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.choice-radio {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  border-radius: 50px;
+  border: 1px solid #F44336;
+  background: inherit;
+  margin-right: 10px;
+}
+
+.choice-title {
+  font-size: 15px;
+  color: white;
+}
+
+.vote {
+  background-color: inherit;
+  border-radius: 5px;
+  margin-left: 25px;
+  width: 300px;
+  font-size: 20px;
+  border: 1px solid #1976D2;
+  font-weight: bold;
+  padding: 10px;
+  color: white;
+  outline: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.vote:hover {
+  background: #1976D2;
 }

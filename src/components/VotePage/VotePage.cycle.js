@@ -10,8 +10,15 @@ export default ({ DOM, props }) => {
     .map(({ question, choices }) =>
       <div key="vote" className={classes.root}>
         <div className={classes.question}>{ question }</div>
-        { choices.map(choice => <div>{ choice }</div>) }
-        <button>vote</button>
+        <div className={classes.choices}>
+          { choices.map(choice => (
+            <div className={classes['choice-root']}>
+              <span className={classes['choice-radio']}></span>
+              <span className={classes['choice-title']}>{ choice }</span>
+            </div>
+          )) }
+        </div>
+        <button className={classes.vote}>vote</button>
       </div>
     )
 
