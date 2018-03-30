@@ -1,34 +1,41 @@
 {
-  "name": "votelite",
+  "name": "todolite",
   "version": "0.1.0",
   "private": true,
-  "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-plugin-transform-react-jsx": "^6.24.1",
-    "babel-preset-env": "^1.6.0",
-    "chalk": "^2.1.0",
-    "cross-spawn": "^5.1.0",
-    "css-loader": "^0.28.11",
-    "file-loader": "^1.1.11",
-    "fs-extra": "^4.0.2",
-    "html-webpack-plugin": "^2.30.1",
-    "inquirer": "^3.3.0",
-    "react-dev-utils": "^4.1.0",
-    "snabbdom-pragma": "^2.5.0",
-    "style-loader": "^0.20.3",
-    "webpack": "^3.6.0",
-    "webpack-dev-server": "^2.9.1"
+  "scripts": {
+    "serve": "vue-cli-service serve --open",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@cycle/dom": "18.3.0",
-    "@cycle/isolate": "^3.2.0",
-    "@cycle/run": "3.3.0",
-    "xstream": "11.0.0"
+    "vue": "^2.5.13"
   },
-  "scripts": {
-    "dev": "node scripts/start.js",
-    "build": "node scripts/build.js"
-  }
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.0-beta.6",
+    "@vue/cli-plugin-eslint": "^3.0.0-beta.6",
+    "@vue/cli-service": "^3.0.0-beta.6",
+    "vue-template-compiler": "^2.5.13"
+  },
+  "babel": {
+    "presets": [
+      "@vue/app"
+    ]
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ]
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }
