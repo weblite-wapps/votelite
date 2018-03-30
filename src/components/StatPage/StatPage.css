@@ -19,16 +19,16 @@
   height: 50px;
   display: inline-block;
   border-radius: 50px;
-  border: 1px solid #F44336;
+  border: 1px solid #424242;
   background: inherit;
   margin-right: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: #424242;
 }
 
 .choice-title {
   font-size: 15px;
-  color: white;
+  color: #424242;
 }

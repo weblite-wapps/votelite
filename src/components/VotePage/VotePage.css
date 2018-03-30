@@ -9,8 +9,8 @@
   font-size: 18px;
   font-weight: bold;
   margin-top: 20px;
-  margin-bottom: 20px;
-  color: #CFD8DC;
+  margin-bottom: 10px;
+  color: #424242;
 }
 
 .choices {
@@ -24,19 +24,30 @@
   align-items: center;
 }
 
-.choice-radio {
-  width: 50px;
-  height: 50px;
+.choice-radio-outlined {
+  width: 30px;
+  height: 30px;
   display: inline-block;
-  border-radius: 50px;
-  border: 1px solid #F44336;
+  border-radius: 30px;
+  background: 1px solid #424242;
+  background: #424242;
+  background: inherit;
+  margin-right: 10px;
+}
+
+.choice-radio {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  border-radius: 30px;
+  border: 1px solid #424242;
   background: inherit;
   margin-right: 10px;
 }
 
 .choice-title {
   font-size: 15px;
-  color: white;
+  color: #424242;
 }
 
 .vote {
@@ -45,15 +56,16 @@
   margin-left: 25px;
   width: 300px;
   font-size: 20px;
-  border: 1px solid #1976D2;
+  border: 1px solid #2196F3;
   font-weight: bold;
   padding: 10px;
-  color: white;
+  color: #424242;
   outline: none;
   cursor: pointer;
   margin-bottom: 20px;
 }
 
 .vote:hover {
-  background: #1976D2;
+  background: #2196F3;
+  color: white;
 }

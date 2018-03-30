@@ -11,7 +11,7 @@ export default ({ DOM, props }) => {
   const vdom$ = props.map(({ title, isStatPage }) =>
     <div key="header" className={classes.root}>
       <span>{ title }</span>
-      <i className="page-icon">{ isStatPage ? 'poll' : 'pie_chart' }</i>
+      <i className="page-icon">{ isStatPage ? 'poll' : 'pie_chart_outlined' }</i>
     </div>
   )
 
