@@ -1,21 +1,29 @@
 <template>
   <div :class="$style.root">
-    Votelite
+    <Header />
   </div>
 </template>
 
+
 <script>
+import Header from './components/Header'
+
 export default {
-  name: 'app'
+  name: 'App',
+
+  components: {
+    Header,
+  }
 }
 </script>
 
+
 <style module>
 .root {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  width: 300px;
+  height: 350px;
+  background: #EEEEEE;
+  border-radius: 10px;
+  overflow: hidden;
 }
 </style>
