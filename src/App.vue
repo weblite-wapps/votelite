@@ -1,23 +1,31 @@
 <template>
   <div :class="$style.root">
-    <Header :isStatPage.sync="isStatPage" />
-    {{ isStatPage ? 'stat' : 'vote' }}
+    <Header :page.sync="page" />
+    <div :is="page" />
   </div>
 </template>
 
 
 <script>
 import Header from './components/Header'
+import Vote from './components/Vote'
+import Stat from './components/Stat'
 
 export default {
   name: 'App',
 
   components: {
     Header,
+    Vote,
+    Stat,
   },
 
   data: () => ({
-    isStatPage: false,
+    page: 'Vote',
+    question: 'what javascript framework do you prefer for wapp development?',
+    choices: ['vue.js', 'cycle.js', 'react.js', 'angular.js', 'riot', 'preact'],
+    votes: [57, 2, 49, 12, 10, 22],
+    vote: null,
   }),
 }
 </script>
