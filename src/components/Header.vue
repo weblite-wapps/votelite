@@ -1,14 +1,24 @@
 <template>
   <div :class="$style.header">
     <span :class="$style['header-title']">Votelite</span>
-    <i class="noselect">pie_chart_outlined</i>
+    <i class="noselect" @click="onChangePage">
+      {{ isStatPage ? 'poll' : 'pie_chart_outlined' }}
+    </i>
   </div>
 </template>
 
 
 <script>
 export default {
-  name: 'Header'
+  name: 'Header',
+
+  props: ['isStatPage'],
+
+  methods: {
+    onChangePage() {
+      this.$emit('update:isStatPage', !this.isStatPage)
+    },
+  },
 }
 </script>
 

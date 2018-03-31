@@ -1,6 +1,7 @@
 <template>
   <div :class="$style.root">
-    <Header />
+    <Header :isStatPage.sync="isStatPage" />
+    {{ isStatPage ? 'stat' : 'vote' }}
   </div>
 </template>
 
@@ -13,7 +14,11 @@ export default {
 
   components: {
     Header,
-  }
+  },
+
+  data: () => ({
+    isStatPage: false,
+  }),
 }
 </script>
 
