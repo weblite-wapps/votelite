@@ -5,8 +5,14 @@
       v-for="(choice, index) in choices"
       :key="index"
     >
-      <span :class="$style['stat-item-circle']">{{ votesPercentage[index] }}%</span>
-      <span :class="$style['stat-item-title']">{{ choice }}</span>
+      <span :class="[$style['stat-item-circle-outer'], `gr-${index + 1}`]">
+        <span :class="$style['stat-item-circle-inner']">
+          {{ votesPercentage[index] }}%
+        </span>
+      </span>
+      <span :class="$style['stat-item-title']">
+        {{ choice }}
+      </span>
     </div>
   </div>
 </template>
@@ -47,15 +53,30 @@ export default {
   padding-bottom: 15px;
 }
 
-.stat-item-circle {
+.stat-item-circle-outer {
   width: 50px;
   height: 50px;
   border-radius: 50px;
-  border: 1px red solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: none;
+}
+
+.stat-item-circle-inner {
+  width: 46px;
+  height: 46px;
+  border-radius: 46px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: bold;
+  background: #EEEEEE;
+}
+
+.stat-item-circle-inner:hover {
+  background: inherit;
+  color: white;
 }
 
 .stat-item-title {
