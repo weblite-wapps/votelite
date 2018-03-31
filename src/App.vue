@@ -1,7 +1,16 @@
 <template>
   <div :class="$style.root">
     <Header :page.sync="page" />
-    <div :is="page" />
+    <Vote
+      v-if="page === 'Vote'"
+      :question="question"
+      :choices="choices"
+    />
+    <Stat
+      v-if="page === 'Stat'"
+      :choices="choices"
+      :votes="votes"
+    />
   </div>
 </template>
 
