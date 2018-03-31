@@ -1,20 +1,20 @@
 <template>
-  <div :class="$style['stat']">
-    <div
-      :class="$style['stat-item']"
-      v-for="(choice, index) in choices"
-      :key="index"
-    >
-      <span :class="[$style['stat-item-circle-outer'], `gr-${index + 1}`]">
-        <span :class="$style['stat-item-circle-inner']">
-          {{ votesPercentage[index] }}%
-        </span>
+<div :class="$style['stat']">
+  <div
+    :class="$style['stat-item']"
+    v-for="(choice, index) in choices"
+    :key="index"
+  >
+    <span :class="[$style['stat-item-circle-outer'], `gr-${index + 1}`]">
+      <span :class="$style['stat-item-circle-inner']">
+        {{ votesPercentage[index] }}%
       </span>
-      <span :class="$style['stat-item-title']">
-        {{ choice }}
-      </span>
-    </div>
+    </span>
+    <span :class="$style['stat-item-title']">
+      {{ choice }}
+    </span>
   </div>
+</div>
 </template>
 
 
