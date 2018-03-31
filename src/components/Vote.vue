@@ -1,7 +1,14 @@
 <template>
   <div :class="$style['vote']">
     <div :class="$style['vote-question']">{{ question }}</div>
-    <div :class="$style['vote-choice']" v-for="choice in choices">{{ choice }}</div>
+
+    <div
+      :class="$style['vote-choice']"
+      v-for="(choice, index) in choices"
+      :key="index"
+    >
+      {{ choice }}
+    </div>
   </div>
 </template>
 

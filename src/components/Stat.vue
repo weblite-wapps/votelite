@@ -1,6 +1,9 @@
 <template>
   <div :class="$style['stat']">
-    <div v-for="(choice, index) in choices">
+    <div
+      v-for="(choice, index) in choices"
+      :key="index"
+    >
       {{ votesPercentage[index] }}% {{ choice }}
     </div>
   </div>
