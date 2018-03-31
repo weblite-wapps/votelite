@@ -23,11 +23,12 @@ export default {
 
 <style module>
 .header {
-  padding: 10px;
+  height: 50px;
   background: #BDBDBD;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 10px;
 }
 
 .header-title {
