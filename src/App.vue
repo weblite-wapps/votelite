@@ -1,24 +1,26 @@
 <template>
-  <div :class="$style.root">
-    <Header :page.sync="page" />
-    <Vote
-      v-if="page === 'Vote'"
-      :question="question"
-      :choices="choices"
-      :vote="vote"
-      @change="changeVote"
-    />
-    <Stat
-      v-if="page === 'Stat'"
-      :choices="choices"
-      :votes="votes"
-    />
+<div :class="$style.root">
+  <Header :page.sync="page" />
 
-    <div
-      v-if="customizeMode"
-      :class="$style.customize"
-    />
-  </div>
+  <Vote
+    v-if="page === 'Vote'"
+    :question="question"
+    :choices="choices"
+    :vote="vote"
+    @change="changeVote"
+  />
+
+  <Stat
+    v-if="page === 'Stat'"
+    :choices="choices"
+    :votes="votes"
+  />
+
+  <div
+    v-if="customizeMode"
+    :class="$style.customize"
+  />
+</div>
 </template>
 
 
@@ -29,8 +31,9 @@ import Vote from './components/Vote'
 import Stat from './components/Stat'
 // helper
 import { addVote } from './helper/functions/changeVotes'
-// W && R
-const { W, R } = window
+import webliteHandler from './helper/functions/weblite.api'
+// W
+const { W } = window
 
 
 export default {
@@ -51,27 +54,11 @@ export default {
     vote: null,
   }),
 
-  created() {
-    this.customizeMode && W.start()
-    W.share.getFromServer([]).then(() => W.start())
-    W.loadData().then(({ localdb, customize }) => {
-      this.question = customize.question
-      this.choices = customize.choices
-      this.name = name
-      if(localdb !== undefined) this.vote = localdb
-    })
-    W.share.subscribe((votes) => { this.votes = votes || [] })
-    W.onChangeValue(({ key, value }) => {
-      if (key === 'question') this.question = value
-      else if (key === 'choices') this.choices = value
-    })
-    W.changeCustomize(R.identity)
-  },
+  created() { webliteHandler(this) },
 
   methods: {
     changeVote(vote) {
-      if (vote === null) return
-      
+      if (vote === null) return null
       this.vote = vote
       this.page = 'Stat'
       addVote(vote, this.choices.length)

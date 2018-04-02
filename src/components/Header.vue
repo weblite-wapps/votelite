@@ -1,10 +1,11 @@
 <template>
-  <div :class="$style.header">
-    <span :class="$style['header-title']">Votelite</span>
-    <i class="noselect" @click="onChangePage">
-      {{ page === 'Vote' ? 'pie_chart_outlined' : 'poll' }}
-    </i>
-  </div>
+<div :class="$style.header">
+  <span :class="$style['header-title']">Votelite</span>
+  
+  <i class="noselect" @click="onChangePage">
+    {{ page === 'Vote' ? 'pie_chart_outlined' : 'poll' }}
+  </i>
+</div>
 </template>
 
 
