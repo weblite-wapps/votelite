@@ -1,0 +1,9 @@
+{
+  "name": "votelite",
+  "instancable": true,
+  "creator": false,
+  "inline": true,
+  "shareDB": true,
+  "width": 300,
+  "height": 350
+}

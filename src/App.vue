@@ -25,7 +25,7 @@ import Stat from './components/Stat'
 // helper
 import { addVote } from './helper/functions/changeVotes'
 // W && R
-const { W, R } = window
+const { W } = window
 
 
 export default {
@@ -47,10 +47,8 @@ export default {
 
   created() {
     W.share.getFromServer([]).then(() => W.start())
-    W.share.subscribe((votes) => {
-      console.log(votes)
-      this.votes = votes || []
-    })
+    W.loadData().then(({ localDB }) => { if(localDB) this.vote = localDB })
+    W.share.subscribe((votes) => { this.votes = votes || [] })
   },
 
   methods: {
@@ -58,6 +56,7 @@ export default {
       this.vote = vote
       this.page = 'Stat'
       addVote(vote, this.choices.length)
+      W.changeLocaldb(vote)
     },
   },
 }

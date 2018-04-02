@@ -1,4 +1,4 @@
-const { W } = window
+const { W, R } = window
 
 
 export const dispatch = (qlite, initial) => W.share.dispatch([], qlite, initial)
