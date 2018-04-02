@@ -9,15 +9,11 @@
     @change="changeLocalVote"
   />
 
-  <div :class="$style['vote-button-wrapper']">
-    <button
-      :class="$style['vote-button']"
-      @click="changeVote"
-      v-if="vote === null"
-    >
-      Vote
-    </button>
-  </div>
+  <Button
+    v-if="vote === null"
+    label="Vote"
+    @click.native="changeVote"
+  />
 
   <div :class="$style['bottom']" />
 </div>
@@ -26,12 +22,12 @@
 
 <script>
 import Radios from '../helper/components/Radios'
-
+import Button from '../helper/components/button'
 
 export default {
   name: 'Vote',
 
-  components: { Radios },
+  components: { Radios, Button },
 
   props: ['question', 'choices', 'vote'],
 
@@ -66,23 +62,6 @@ export default {
   text-align: center;
   font-size: 16px;
   font-weight: bold;
-}
-
-.vote-button-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.vote-button {
-  width: 240px;
-  height: 30px;
-  background: inherit;
-  margin-top: 20px;
-  border-radius: 5px;
-  border: 1px solid red;
-  outline: none;
-  cursor: pointer;
 }
 
 .bottom {

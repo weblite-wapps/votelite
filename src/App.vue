@@ -45,9 +45,9 @@ export default {
   data: () => ({
     customizeMode: W.mode === 'customize',
     page: 'Vote',
-    question: '',
-    choices: [],
-    votes: [],
+    question: 'asdasd asdasd asdasd asdasdasd ?',
+    choices: [1, 2],
+    votes: [2, 3],
     vote: null,
   }),
 
