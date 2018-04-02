@@ -35,12 +35,16 @@ export default {
     page: 'Vote',
     question: 'what javascript framework do you prefer for wapp development?',
     choices: ['vue.js', 'cycle.js', 'react.js', 'angular.js', 'riot', 'preact'],
-    votes: [57, 2, 49, 12, 10, 22],
+    votes: [1, 2, 0, 0, 3, 1],
     vote: null,
   }),
 
   methods: {
-    changeVote(vote) { this.vote = vote},
+    changeVote(vote) {
+      this.vote = vote
+      this.page = 'Stat'
+      this.votes[vote]++
+    },
   },
 }
 </script>

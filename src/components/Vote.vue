@@ -4,14 +4,22 @@
 
   <Radios
     :choices="choices"
-    :value="vote || localVote"
+    :value="voteValue"
     :disable="vote !== null"
     @change="changeLocalVote"
   />
 
   <div :class="$style['vote-button-wrapper']">
-    <button :class="$style['vote-button']" @click="changeVote">Vote</button>
+    <button
+      :class="$style['vote-button']"
+      @click="changeVote"
+      v-if="vote === null"
+    >
+      Vote
+    </button>
   </div>
+
+  <div :class="$style['bottom']" />
 </div>
 </template>
 
@@ -30,6 +38,13 @@ export default {
   data: () => ({
     localVote: null,
   }),
+
+  computed: {
+    voteValue() {
+      if (this.vote !== null) return this.vote
+      return this.localVote
+    }
+  },
 
   methods: {
     changeLocalVote(vote) { this.localVote = vote },
@@ -64,9 +79,13 @@ export default {
   height: 30px;
   background: inherit;
   margin-top: 20px;
-  margin-bottom: 30px;
   border-radius: 5px;
   border: 1px solid red;
   outline: none;
+  cursor: pointer;
+}
+
+.bottom {
+  height: 30px;
 }
 </style>
