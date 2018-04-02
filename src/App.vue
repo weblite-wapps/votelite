@@ -45,9 +45,9 @@ export default {
   data: () => ({
     customizeMode: W.mode === 'customize',
     page: 'Vote',
-    question: 'asdasd asdasd asdasd asdasdasd ?',
-    choices: ['1', 2],
-    votes: [2, 3],
+    question: 'what framework you prefer to use?',
+    choices: ['cycle.js', 'jquery', 'reacrt.js', 'angular.js', 'vue.js'],
+    votes: [2, 3, 5, 2, 9],
     vote: null,
   }),
 
@@ -70,6 +70,8 @@ export default {
 
   methods: {
     changeVote(vote) {
+      if (vote === null) return
+      
       this.vote = vote
       this.page = 'Stat'
       addVote(vote, this.choices.length)
