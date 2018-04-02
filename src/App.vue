@@ -5,6 +5,8 @@
       v-if="page === 'Vote'"
       :question="question"
       :choices="choices"
+      :vote="vote"
+      @change="changeVote"
     />
     <Stat
       v-if="page === 'Stat'"
@@ -36,6 +38,10 @@ export default {
     votes: [57, 2, 49, 12, 10, 22],
     vote: null,
   }),
+
+  methods: {
+    changeVote(vote) { this.vote = vote},
+  },
 }
 </script>
 

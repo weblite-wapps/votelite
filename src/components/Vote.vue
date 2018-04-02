@@ -2,27 +2,40 @@
 <div :class="$style['vote']">
   <div :class="$style['vote-question']">{{ question }}</div>
 
-  <div
-    :class="$style['vote-item']"
-    v-for="(choice, index) in choices"
-    :key="index"
-  >
-    <span :class="[$style['vote-item-circle-outer'], `gr-${index + 1}`]">
-      <span :class="$style['vote-item-circle-inner']"/>
-    </span>
-    <span :class="$style['vote-item-title']">
-      {{ choice }}
-    </span>
+  <Radios
+    :choices="choices"
+    :value="vote || localVote"
+    :disable="vote !== null"
+    @change="changeLocalVote"
+  />
+
+  <div :class="$style['vote-button-wrapper']">
+    <button :class="$style['vote-button']" @click="changeVote">Vote</button>
   </div>
 </div>
 </template>
 
 
 <script>
+import Radios from '../helper/components/Radios'
+
+
 export default {
   name: 'Vote',
 
-  props: ['question', 'choices'],
+  components: { Radios },
+
+  props: ['question', 'choices', 'vote'],
+
+  data: () => ({
+    localVote: null,
+  }),
+
+  methods: {
+    changeLocalVote(vote) { this.localVote = vote },
+
+    changeVote() { this.$emit('change', this.localVote) },
+  },
 }
 </script>
 
@@ -40,43 +53,20 @@ export default {
   font-weight: bold;
 }
 
-.vote-item {
-  padding: 15px 15px 0px 15px;
+.vote-button-wrapper {
+  width: 100%;
   display: flex;
-  align-items: center;
+  justify-content: center;
 }
 
-.vote-item:last-child {
-  padding-bottom: 30px;
-}
-
-.vote-item-circle-outer {
-  width: 30px;
+.vote-button {
+  width: 240px;
   height: 30px;
-  border-radius: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-
-.vote-item-circle-inner {
-  width: 26px;
-  height: 26px;
-  border-radius: 26px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  background: #EEEEEE;
-}
-
-.vote-item-circle-inner:hover {
   background: inherit;
-  color: white;
-}
-
-.vote-item-title {
-  margin-left: 10px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  border-radius: 5px;
+  border: 1px solid red;
+  outline: none;
 }
 </style>
