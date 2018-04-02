@@ -47,8 +47,11 @@ export default {
 
   created() {
     W.share.getFromServer([]).then(() => W.start())
-    W.loadData().then(({ localDB }) => { if(localDB) this.vote = localDB })
-    W.share.subscribe((votes) => { this.votes = votes || [] })
+    W.loadData().then(({ localdb }) => { if(localdb) this.vote = localdb })
+    W.share.subscribe((votes) => {
+      console.log(votes)
+      this.votes = votes || []
+    })
   },
 
   methods: {
