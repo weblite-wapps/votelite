@@ -10,9 +10,13 @@
         {{ votesPercentage[index] }}%
       </span>
     </span>
-    <span :class="$style['stat-item-title']">
-      {{ choice }}
-    </span>
+
+    <div :class="$style['stat-item-text']">
+      <div>{{ choice }}</div>
+      <div :class="$style['stat-item-number']">
+        {{ votes[index] }} person
+      </div>
+    </div>
   </div>
 </div>
 </template>
@@ -79,7 +83,14 @@ export default {
   color: white;
 }
 
-.stat-item-title {
-  margin-left: 10px;
+.stat-item-text {
+  width: 210px;
+  padding-left: 10px;
+}
+
+.stat-item-number {
+  font-size: 10px;
+  width: inherit;
+  text-align: right;
 }
 </style>
