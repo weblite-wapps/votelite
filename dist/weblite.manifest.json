@@ -5,5 +5,9 @@
   "inline": true,
   "shareDB": true,
   "width": 300,
-  "height": 350
+  "height": 350,
+  "customizeArray": [
+    { "type": "text", "name": "question", "title": "Question", "description": "write your question", "detail": { "placeholder": "question" } },
+    { "type": "multipleText", "name": "choices", "title": "Choices", "description": "add choice", "detail": { "placeholder": "choice" } }
+  ]
 }

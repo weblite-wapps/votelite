@@ -13,6 +13,11 @@
       :choices="choices"
       :votes="votes"
     />
+
+    <div
+      v-if="customizeMode"
+      :class="$style.customize"
+    />
   </div>
 </template>
 
@@ -25,7 +30,7 @@ import Stat from './components/Stat'
 // helper
 import { addVote } from './helper/functions/changeVotes'
 // W && R
-const { W } = window
+const { W, R } = window
 
 
 export default {
@@ -38,20 +43,29 @@ export default {
   },
 
   data: () => ({
+    customizeMode: W.mode === 'customize',
     page: 'Vote',
-    question: 'what javascript framework do you prefer for wapp development?',
-    choices: ['vue.js', 'cycle.js', 'react.js', 'angular.js', 'riot', 'preact'],
+    question: '',
+    choices: [],
     votes: [],
     vote: null,
   }),
 
   created() {
+    this.customizeMode && W.start()
     W.share.getFromServer([]).then(() => W.start())
-    W.loadData().then(({ localdb }) => { if(localdb) this.vote = localdb })
-    W.share.subscribe((votes) => {
-      console.log(votes)
-      this.votes = votes || []
+    W.loadData().then(({ localdb, customize }) => {
+      this.question = customize.question
+      this.choices = customize.choices
+      this.name = name
+      if(localdb !== undefined) this.vote = localdb
     })
+    W.share.subscribe((votes) => { this.votes = votes || [] })
+    W.onChangeValue(({ key, value }) => {
+      if (key === 'question') this.question = value
+      else if (key === 'choices') this.choices = value
+    })
+    W.changeCustomize(R.identity)
   },
 
   methods: {
@@ -73,5 +87,14 @@ export default {
   background: #EEEEEE;
   border-radius: 10px;
   overflow: hidden;
+}
+
+.customize {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 200;
+  top: 0;
+  right: 0;
 }
 </style>
