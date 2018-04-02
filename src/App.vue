@@ -18,9 +18,15 @@
 
 
 <script>
+// components
 import Header from './components/Header'
 import Vote from './components/Vote'
 import Stat from './components/Stat'
+// helper
+import { addVote } from './helper/functions/changeVotes'
+// W && R
+const { W, R } = window
+
 
 export default {
   name: 'App',
@@ -35,15 +41,23 @@ export default {
     page: 'Vote',
     question: 'what javascript framework do you prefer for wapp development?',
     choices: ['vue.js', 'cycle.js', 'react.js', 'angular.js', 'riot', 'preact'],
-    votes: [1, 2, 0, 0, 3, 1],
+    votes: [],
     vote: null,
   }),
+
+  created() {
+    W.share.getFromServer([]).then(() => W.start())
+    W.share.subscribe((votes) => {
+      console.log(votes)
+      this.votes = votes || []
+    })
+  },
 
   methods: {
     changeVote(vote) {
       this.vote = vote
       this.page = 'Stat'
-      this.votes[vote]++
+      addVote(vote, this.choices.length)
     },
   },
 }
