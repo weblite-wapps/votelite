@@ -49,8 +49,8 @@ export default {
     customizeMode: W.mode === 'customize',
     page: 'Vote',
     question: 'what framework you prefer to use?',
-    choices: ['cycle.js', 'jquery', 'reacrt.js', 'angular.js', 'vue.js'],
-    votes: [2, 3, 5, 2, 9],
+    choices: [],
+    votes: [],
     vote: null,
   }),
 

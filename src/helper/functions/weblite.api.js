@@ -29,5 +29,5 @@ export default (vueRoot) => {
     else if (key === 'choices') vueRoot.choices = value
   })
   // handle customize object
-  W.changeCustomize(R.prop('customize'))
+  W.changeCustomize(R.identity)
 }
