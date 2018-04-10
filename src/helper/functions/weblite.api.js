@@ -3,6 +3,10 @@ const { W, R } = window
 
 
 export default (vueRoot) => {
+  /* change mode */
+  if (W.mode === 'customize') { vueRoot.customizeMode = true }
+
+
   /* Load localDB and Customization Data */
   // get localDB And Customize Value
   W.loadData().then(({ localdb, customize }) => {

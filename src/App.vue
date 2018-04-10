@@ -46,15 +46,15 @@ export default {
   },
 
   data: () => ({
-    customizeMode: W.mode === 'customize',
+    customizeMode: false,
     page: 'Vote',
-    question: 'what framework you prefer to use?',
+    question: '',
     choices: [],
     votes: [],
     vote: null,
   }),
 
-  created() { webliteHandler(this) },
+  created() { W && webliteHandler(this) },
 
   methods: {
     changeVote(vote) {
