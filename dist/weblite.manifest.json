@@ -10,5 +10,10 @@
   "customizeArray": [
     { "type": "textField", "name": "question", "title": "Question", "description": "write your question", "detail": { "placeholder": "question" } },
     { "type": "multipleTextField", "name": "choices", "title": "Choices", "description": "add choice", "detail": { "placeholder": "choice" } }
-  ]
+  ],
+  "servIndexes": {
+    "inline": "index",
+    "customize": "index",
+    "main": "index"
+  }
 }
