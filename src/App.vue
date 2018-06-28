@@ -1,6 +1,6 @@
 <template>
 <div :class="$style.root">
-  <Header :page.sync="page" />
+  <Header :page.sync="page" :vote="vote"/>
 
   <Vote
     v-if="page === 'Vote'"
@@ -48,8 +48,8 @@ export default {
   data: () => ({
     customizeMode: false,
     page: 'Vote',
-    question: '',
-    choices: [],
+    question: 'How many do you want?',
+    choices: [1, 2, 3, 'reza'],
     votes: [],
     vote: null,
   }),

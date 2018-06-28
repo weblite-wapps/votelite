@@ -13,10 +13,13 @@
 export default {
   name: 'Header',
 
-  props: ['page'],
+  props: ['page', 'vote'],
 
   methods: {
-    onChangePage() { this.$emit('update:page', this.page === 'Vote' ? 'Stat' : 'Vote') },
+    onChangePage() {
+      if(this.vote != null)
+        this.$emit('update:page', this.page === 'Vote' ? 'Stat' : 'Vote') 
+    },
   },
 }
 </script>

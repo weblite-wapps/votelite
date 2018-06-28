@@ -6,7 +6,7 @@
     :key="index"
     @click="change(index)"
   >
-    <span :class="[$style['radio-circle-outer'], `gr-${index + 1}`]">
+    <span :class="[$style['radio-circle-outer'], `gr-${index % 10}`]">
       <span :class="[$style['radio-circle-inner'], (value === index) ? $style['radio-circle-checked'] : null]"/>
     </span>
     <span :class="$style['radio-title']">
