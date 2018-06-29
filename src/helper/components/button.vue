@@ -17,7 +17,7 @@ export default {
 <style module>
 .button-container {
   width: 100%;
-  height: 50px;
+  height: 40px;
   background: inherit;
   outline: none;
   cursor: pointer;
@@ -25,12 +25,12 @@ export default {
   justify-content: center;
   align-items: center;
   align-self: flex-end;
-  background: #3b3b8f;
+  background: #2a87bd;
   color: white;
 }
 
-.button-inner:hover {
-  background: inherit;
-  color: white;
+.button-container:hover {
+  color: black;
 }
+
 </style>

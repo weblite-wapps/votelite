@@ -103,23 +103,23 @@ export default {
   justify-content: center;
   align-items: center;
 
-  border-color: rgb(89, 94, 124);
+  border-color: rgb(116, 170, 201);
   border-style: solid;
   border-width: 1.2px;
 }
 
 .choice-circle-selected {
-  background: rgb(89, 94, 124);
-  color: white;
+  background: rgba(61, 147, 197, 0.767);
+  color: rgb(255, 235, 235);
 }
 
 .choice-circle-voted {
-  background: rgb(89, 94, 124); 
-  color: white;
+  background: rgba(61, 147, 197, 0.767); 
+  color: rgb(255, 235, 235);
 }
 
 .choice-circle.choice-circle-selectable:hover {
-    background: lightgray;
+    background: rgba(6, 176, 255, 0.267);
 }
 
 .before-caption {
@@ -136,6 +136,8 @@ export default {
   font-size: 14px;
   overflow: hidden;
 
+  color: rgba(255, 255, 255, 0.61);
+
   display: flex;
   align-items: center;
 }
@@ -147,6 +149,7 @@ export default {
   justify-content: flex-end;
 
   font-size: 13px;
+  color: rgba(199, 244, 255, 0.712); 
 }
 
 .choice-percentage {
@@ -156,6 +159,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+
+  color: rgba(213, 247, 255, 0.712);
 }
 
 .choice-percentage::before {

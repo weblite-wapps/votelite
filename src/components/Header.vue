@@ -19,7 +19,8 @@ export default {
 <style module>
 .header {
   height: 50px;
-  background: rgb(162, 180, 219);
+  background: rgb(131, 131, 131);
+  background: #70b1d6;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -28,6 +29,8 @@ export default {
 
 .header-title {
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 510;
+
+  color: rgb(0, 0, 0);
 }
 </style>

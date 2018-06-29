@@ -61,9 +61,9 @@ export default {
     },
     currentHeight() {
       if (this.selectedChoice !== null && this.selectedVote === null)
-        return 218
+        return 228
       else
-        return 270
+        return 280
     }
   },
 
@@ -82,6 +82,8 @@ export default {
   padding: 15px 0;
   overflow-y: scroll;
   overflow-x: hidden;
+
+  background: rgb(49, 49, 49);
 }
 
 .vote-choices {
@@ -93,6 +95,13 @@ export default {
   text-align: center;
   font-size: 16px;
   font-weight: bold;
+
+  color: rgba(220, 251, 255, 0.726);
+}
+
+.vote-question::before, .vote-question::after {
+  content: " \" ";
+  color: rgba(100, 190, 212, 0.527);
 }
 
 .bottom {
