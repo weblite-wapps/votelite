@@ -7,6 +7,7 @@ import './helper/style/gradients.css'
 // components
 import App from './App.vue'
 
+export const bus = new Vue();
 
 Vue.config.productionTip = false
 new Vue({ render: h => h(App) }).$mount('#app')

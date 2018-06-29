@@ -2,17 +2,15 @@
 <div :class="$style['vote']">
   <div :class="$style['vote-question']">{{ question }}</div>
 
-  <Radios
-    :choices="choices"
-    :value="voteValue"
-    :disable="vote !== null"
-    @change="changeLocalVote"
-  />
-
-  <Button
-    v-if="vote === null"
-    label="Vote"
-    @click.native="changeVote"
+  <Choice
+    v-for="(choice, index) in choices"
+    :caption="choice"
+    :percentage="votesPercentage[index]"
+    :voteCount="votesCount[index]"
+    :selected-vote="selectedVote"
+    :key="index"
+    :index="index"
+    @makeVote="makeVote"
   />
 
   <div :class="$style['bottom']" />
@@ -21,31 +19,51 @@
 
 
 <script>
-import Radios from '../helper/components/Radios'
-import Button from '../helper/components/button'
+const { R } = window
+
+import Choice from './Choice.vue'
+import Button from '../helper/components/button.vue'
 
 export default {
   name: 'Vote',
 
-  components: { Radios, Button },
+  components: { Choice, Button },
 
-  props: ['question', 'choices', 'vote'],
+  props: ['question', 'choices', 'votes', 'selectedVote'],
 
   data: () => ({
-    localVote: null,
+    
   }),
 
   computed: {
-    voteValue() {
-      if (this.vote !== null) return this.vote
-      return this.localVote
+    votesPercentage() {
+      const sum = R.sum(this.votes)
+      var temp_array = []
+      
+      if (sum === 0)
+        for (let i = 0; i < this.choices.length; i++)
+          temp_array.push(0)
+      else {
+        temp_array = this.votes.map(voteNumber => Math.round((voteNumber / sum) * 100))
+      }
+
+      return temp_array
+    }, 
+    votesCount() {
+      var temp_array = []
+
+      if (R.sum(this.votes) === 0 || this.choices.length != this.votes.length)
+        for (let i = 0; i < this.choices.length; i++)
+          temp_array.push(0)
+      else
+        temp_array = this.votes
+
+      return temp_array
     }
   },
 
   methods: {
-    changeLocalVote(vote) { this.localVote = vote },
-
-    changeVote() { this.$emit('change', this.localVote) },
+    makeVote(index) { this.$emit('makeVote', index) },
   },
 }
 </script>

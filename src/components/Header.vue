@@ -2,8 +2,8 @@
 <div :class="$style.header">
   <span :class="$style['header-title']">Votelite</span>
   
-  <i class="noselect" @click="onChangePage">
-    {{ page === 'Vote' ? 'pie_chart_outlined' : 'poll' }}
+  <i class="noselect">
+    {{ 'poll' }}
   </i>
 </div>
 </template>
@@ -12,15 +12,6 @@
 <script>
 export default {
   name: 'Header',
-
-  props: ['page', 'vote'],
-
-  methods: {
-    onChangePage() {
-      if(this.vote != null)
-        this.$emit('update:page', this.page === 'Vote' ? 'Stat' : 'Vote') 
-    },
-  },
 }
 </script>
 

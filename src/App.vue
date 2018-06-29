@@ -1,19 +1,13 @@
 <template>
 <div :class="$style.root">
-  <Header :page.sync="page" :vote="vote"/>
+  <Header/>
 
   <Vote
-    v-if="page === 'Vote'"
     :question="question"
     :choices="choices"
-    :vote="vote"
-    @change="changeVote"
-  />
-
-  <Stat
-    v-if="page === 'Stat'"
-    :choices="choices"
     :votes="votes"
+    :selectedVote="vote"
+    @makeVote="makeVote($event)"
   />
 
   <div
@@ -34,7 +28,9 @@ import { addVote } from './helper/functions/changeVotes'
 import webliteHandler from './helper/functions/weblite.api'
 // W
 const { W } = window
+const bus = {
 
+}
 
 export default {
   name: 'App',
@@ -47,9 +43,8 @@ export default {
 
   data: () => ({
     customizeMode: false,
-    page: 'Vote',
     question: 'How many do you want?',
-    choices: [1, 2, 3, 'reza'],
+    choices: ['choice 1', 'choice 2', 'choice 3', 'choice 4'],
     votes: [],
     vote: null,
   }),
@@ -57,10 +52,11 @@ export default {
   created() { W && webliteHandler(this) },
 
   methods: {
-    changeVote(vote) {
+    makeVote(vote) {
+      console.log('vote ' + vote)
+
       if (vote === null) return null
       this.vote = vote
-      this.page = 'Stat'
       addVote(vote, this.choices.length)
       W.changeLocaldb(vote)
     },
