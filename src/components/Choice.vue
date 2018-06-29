@@ -1,13 +1,26 @@
 <template>
   <div :class="$style['choice']" @click="select">
-    <span :class="[$style['choice-circle-outer'], `gr-${index % 10}`]">
-      <span :class="[$style['choice-circle-inner'], (state == 'selected' || index === selectedVote) ? $style['choice-circle-voted'] : null,
-      (canSelect) ? $style['choice-selectable'] : null]" />
-    </span>
-    <span :class="$style['choice-text']">
-      {{ caption }} | {{ percentage }}% | {{ voteCount }}
-    </span>
-  </div>
+    <div :class="$style['before-caption']">
+      <div :class="$style['choice-percentage']">
+        {{ percentage }}
+      </div>
+
+      <div :class="[$style['choice-circle-outer'], `gr-${index % 10}`]">
+        <span :class="[$style['choice-circle-inner'], (state == 'selected' || index === selectedVote) ? $style['choice-circle-voted'] : null,
+        (canSelect) ? $style['choice-selectable'] : null]" />
+      </div>
+    </div>
+
+    <div :class="$style['choice-caption']">
+      {{ caption }} 
+    </div>
+
+    <div :class="$style['choice-vote-count']">
+      <div> {{ voteCount }} </div>
+      <div> <i> person </i> </div>
+    </div>
+  </div> 
+
 </template>
 
 
@@ -50,9 +63,20 @@ export default {
 
 <style module>
 .choice {
-  padding: 15px 15px 0px 15px;
+  padding: 5px 5px;
+
   display: flex;
+  flex-direction: row;
   align-items: center;
+  
+  width: 250px;
+  height: 40px;
+
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none; /* Standard syntax */
+
   cursor: pointer;
 }
 
@@ -91,12 +115,44 @@ export default {
     color: white;
 }
 
-.choice-text {
-  margin-left: 10px;
-
-  -webkit-user-select: none; /* Safari 3.1+ */
-  -moz-user-select: none; /* Firefox 2+ */
-  -ms-user-select: none; /* IE 10+ */
-  user-select: none; /* Standard syntax */
+.before-caption {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
+
+.choice-caption {
+  width: 170px;
+  height: 30px;
+  max-width: 170px;
+  padding-left: 6px;
+  font-size: 14px;
+
+  display: flex;
+  align-items: center;
+}
+
+.choice-vote-count {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+
+  font-size: 13px;
+}
+
+.choice-percentage {
+  font-size: 12px;
+  padding-right: 3px;
+  width: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.choice-percentage::before {
+  content: '%';
+  font-size: 10px;
+}
+
 </style>

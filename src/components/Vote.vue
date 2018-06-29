@@ -1,18 +1,19 @@
 <template>
-<div :class="$style['vote']">
+<div :class="$style['vote-container']">
   <div :class="$style['vote-question']">{{ question }}</div>
 
-  <Choice
-    v-for="(choice, index) in choices"
-    :caption="choice"
-    :percentage="votesPercentage[index]"
-    :voteCount="votesCount[index]"
-    :selected-vote="selectedVote"
-    :key="index"
-    :index="index"
-    @makeVote="makeVote"
-  />
-
+  <div :class="$style['vote-choices']">
+    <Choice
+      v-for="(choice, index) in choices"
+      :caption="choice"
+      :percentage="votesPercentage[index]"
+      :voteCount="votesCount[index]"
+      :selected-vote="selectedVote"
+      :key="index"
+      :index="index"
+      @makeVote="makeVote"
+    />
+  </div>
   <div :class="$style['bottom']" />
 </div>
 </template>
@@ -70,13 +71,21 @@ export default {
 
 
 <style module>
-.vote {
+.vote-container {
+  display: flex;
+  flex-direction: column;
+
   height: 300px;
   padding: 15px;
   overflow: scroll;
 }
 
+.vote-choices {
+  margin: 7px auto;
+}
+
 .vote-question {
+  padding-bottom: 10px;
   text-align: center;
   font-size: 16px;
   font-weight: bold;

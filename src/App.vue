@@ -45,7 +45,7 @@ export default {
     customizeMode: false,
     question: 'How many do you want?',
     choices: ['choice 1', 'choice 2', 'choice 3', 'choice 4'],
-    votes: [],
+    votes: [100, 0, 0, 0],
     vote: null,
   }),
 
