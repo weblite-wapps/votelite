@@ -1,7 +1,7 @@
 <template>
-<div :class="$style['vote-container']">
+<div :class="$style['vote-container']"
+     :style="{height: currentHeight + 'px'}">
   <div :class="$style['vote-question']">{{ question }}</div>
-
   <div :class="$style['vote-choices']">
     <Choice
       v-for="(choice, index) in choices"
@@ -11,7 +11,6 @@
       :selected-vote="selectedVote"
       :key="index"
       :index="index"
-      @makeVote="makeVote"
     />
   </div>
   <div :class="$style['bottom']" />
@@ -23,14 +22,13 @@
 const { R } = window
 
 import Choice from './Choice.vue'
-import Button from '../helper/components/button.vue'
 
 export default {
   name: 'Vote',
 
-  components: { Choice, Button },
+  components: { Choice },
 
-  props: ['question', 'choices', 'votes', 'selectedVote'],
+  props: ['question', 'choices', 'votes', 'selectedVote', 'selectedChoice'],
 
   data: () => ({
     
@@ -60,11 +58,17 @@ export default {
         temp_array = this.votes
 
       return temp_array
+    },
+    currentHeight() {
+      if (this.selectedChoice !== null && this.selectedVote === null)
+        return 218
+      else
+        return 270
     }
   },
 
   methods: {
-    makeVote(index) { this.$emit('makeVote', index) },
+  
   },
 }
 </script>
@@ -75,9 +79,9 @@ export default {
   display: flex;
   flex-direction: column;
 
-  height: 300px;
-  padding: 15px;
-  overflow: scroll;
+  padding: 15px 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .vote-choices {
@@ -94,4 +98,9 @@ export default {
 .bottom {
   height: 30px;
 }
+
+::-webkit-scrollbar {
+  display: none;
+}
+
 </style>

@@ -1,18 +1,20 @@
 <template>
-  <div :class="$style['choice']" @click="select">
+  <div :class="[$style['choice'], (selectedVote !== null) ? $style['not-button'] : null]" @click="select">
     <div :class="$style['before-caption']">
       <div :class="$style['choice-percentage']">
         {{ percentage }}
       </div>
 
-      <div :class="[$style['choice-circle-outer'], `gr-${index % 10}`]">
-        <span :class="[$style['choice-circle-inner'], (state == 'selected' || index === selectedVote) ? $style['choice-circle-voted'] : null,
-        (canSelect) ? $style['choice-selectable'] : null]" />
+      <div :class="[$style['choice-circle'], (state == 'selected') ? $style['choice-circle-selected'] : null,
+      (selectedVote == index) ? $style['choice-circle-voted'] : null, (canSelect && state != 'selected') ? $style['choice-circle-selectable'] : null]">
+
+        <div v-show="state === 'selected' && selectedVote === null" transition="fade"> ? </div>
+        <div v-show="selectedVote == index" transition="fade"> X </div>
       </div>
     </div>
 
     <div :class="$style['choice-caption']">
-      {{ caption }} 
+      {{ caption | trimText }}
     </div>
 
     <div :class="$style['choice-vote-count']">
@@ -42,8 +44,8 @@ export default {
         bus.$emit('choiceSelected', this.index)
       }
       else if (this.state == 'selected') {
-        this.state = 'voted'
-        this.$emit('makeVote', this.index)
+        this.state = 'not selected'
+        bus.$emit('choiceSelected', null)
       }
     }
   },
@@ -52,7 +54,15 @@ export default {
       return (this.selectedVote === null)
     }
   },
+  filters: {
+    trimText (text) {
+      return text.slice(0, 25)
+    }
+  },
   created () {
+    if (this.selectedVote === this.index) this.state = 'voted'
+    else this.state = 'not selected'
+
     bus.$on('choiceSelected', (index) => {
       if (index != this.index) { this.state = 'not selected' }
     })
@@ -62,14 +72,15 @@ export default {
 
 
 <style module>
+
 .choice {
-  padding: 5px 5px;
+  padding: 5px 0px;
 
   display: flex;
   flex-direction: row;
   align-items: center;
   
-  width: 250px;
+  width: 280px;
   height: 40px;
 
   -webkit-user-select: none; /* Safari 3.1+ */
@@ -80,39 +91,35 @@ export default {
   cursor: pointer;
 }
 
-.choice-circle-outer {
-  width: 30px;
-  height: 30px;
-  border-radius: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.not-button {
+ cursor: default;
 }
 
-.choice-circle-inner {
-  width: 26px;
-  height: 26px;
-  border-radius: 26px;
+.choice-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: bold;
-  background: #EEEEEE;
+
+  border-color: rgb(89, 94, 124);
+  border-style: solid;
+  border-width: 1.2px;
 }
 
 .choice-circle-selected {
-  background: inherit;
+  background: rgb(89, 94, 124);
   color: white;
 }
 
 .choice-circle-voted {
-  background: inherit;
+  background: rgb(89, 94, 124); 
   color: white;
 }
 
-.choice-selectable.choice-circle-inner:hover {
-    background: inherit;
-    color: white;
+.choice-circle.choice-circle-selectable:hover {
+    background: lightgray;
 }
 
 .before-caption {
@@ -127,6 +134,7 @@ export default {
   max-width: 170px;
   padding-left: 6px;
   font-size: 14px;
+  overflow: hidden;
 
   display: flex;
   align-items: center;
@@ -143,7 +151,7 @@ export default {
 
 .choice-percentage {
   font-size: 12px;
-  padding-right: 3px;
+  padding-right: 7px;
   width: 28px;
   display: flex;
   align-items: center;
@@ -153,6 +161,15 @@ export default {
 .choice-percentage::before {
   content: '%';
   font-size: 10px;
+}
+
+.fade-transition {
+  transition: all 1s ease;
+  color: black;
+}
+
+.fade-enter, .fade-leave {
+  opacity: 0;
 }
 
 </style>

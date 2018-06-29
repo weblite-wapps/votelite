@@ -19,7 +19,7 @@ export default {
 <style module>
 .header {
   height: 50px;
-  background: #BDBDBD;
+  background: rgb(162, 180, 219);
   display: flex;
   justify-content: space-between;
   align-items: center;

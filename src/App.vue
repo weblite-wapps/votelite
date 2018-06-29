@@ -7,7 +7,14 @@
     :choices="choices"
     :votes="votes"
     :selectedVote="vote"
+    :selectedChoice="selectedChoice"
     @makeVote="makeVote($event)"
+  />
+
+  <Button
+    v-if="vote === null && selectedChoice !== null" 
+    :label="'Vote'"
+    @click="makeVote(selectedChoice)"
   />
 
   <div
@@ -23,14 +30,15 @@
 import Header from './components/Header'
 import Vote from './components/Vote'
 import Stat from './components/Stat'
+
+import { bus } from './main.js'
+
 // helper
+import Button from './helper/components/Button'
 import { addVote } from './helper/functions/changeVotes'
 import webliteHandler from './helper/functions/weblite.api'
 // W
 const { W } = window
-const bus = {
-
-}
 
 export default {
   name: 'App',
@@ -39,17 +47,23 @@ export default {
     Header,
     Vote,
     Stat,
+    Button
   },
 
   data: () => ({
     customizeMode: false,
     question: 'How many do you want?',
-    choices: ['choice 1', 'choice 2', 'choice 3', 'choice 4'],
-    votes: [100, 0, 0, 0],
+    choices: ['choice 1', 'choice 2', 'choice 3', 'choice 4', 'choice 1', 'choice 2', 'choice 3', 'choice 4'],
+    votes: [],
     vote: null,
+    selectedChoice: null
   }),
 
-  created() { W && webliteHandler(this) },
+  created() { 
+    W && webliteHandler(this)
+    bus.$on('choiceSelected', (index) => {
+          this.selectedChoice = index })
+  },
 
   methods: {
     makeVote(vote) {
