@@ -20,9 +20,9 @@
 
 
 <script>
-const { R } = window
-
 import Choice from './Choice.vue'
+
+const { R } = window
 
 export default {
   name: 'Vote',
@@ -66,11 +66,7 @@ export default {
       else
         return 280
     }
-  },
-
-  methods: {
-  
-  },
+  }
 }
 </script>
 

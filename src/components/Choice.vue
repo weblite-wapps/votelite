@@ -19,7 +19,7 @@
       </div>
 
       <div :class="$style['choice-caption']">
-        {{ caption | trimText }}
+        {{ shortenedCaption }}
       </div>
     </div>
 
@@ -61,11 +61,9 @@ export default {
   computed: {
     canSelect () {
       return (this.selectedVote === null)
-    }
-  },
-  filters: {
-    trimText (text) {
-      return text.slice(0, 25)
+    }, 
+    shortenedCaption () {
+      return this.caption.slice(0, 25)
     }
   },
   created () {
@@ -133,7 +131,6 @@ export default {
 }
 
 .choice-not-stat {
-
   display: flex;
   flex-direction: row;
   justify-content: center;

@@ -50,23 +50,20 @@ export default {
     Vote,
     Button
   },
-
   data: () => ({
     customizeMode: false,
     question: 'How many do you want?',
-    choices: ['choice 1', 'choice 2', 'choice 3', 'choice 4', 'choice 1', 'choice 2', 'choice 3', 'choice 4'],
+    choices: ['choice 1', 'choice 2', 'choice 3', 'choice 4', 'choice 5', 'choice 6', 'choice 7'],
     votes: [],
     vote: null,
     selectedChoice: null,
     showStatBeforeVoting: false
   }),
-
   created() { 
     W && webliteHandler(this)
     bus.$on('choiceSelected', (index) => {
           this.selectedChoice = index })
   },
-
   methods: {
     makeVote(vote) {
       console.log('vote ' + vote)
