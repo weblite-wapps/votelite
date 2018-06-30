@@ -8,6 +8,7 @@
     :votes="votes"
     :selectedVote="vote"
     :selectedChoice="selectedChoice"
+    :showStatBeforeVoting="showStatBeforeVoting"
   />
 
   <transition name="move-vote-button">
@@ -56,7 +57,8 @@ export default {
     choices: ['choice 1', 'choice 2', 'choice 3', 'choice 4', 'choice 1', 'choice 2', 'choice 3', 'choice 4'],
     votes: [],
     vote: null,
-    selectedChoice: null
+    selectedChoice: null,
+    showStatBeforeVoting: false
   }),
 
   created() { 

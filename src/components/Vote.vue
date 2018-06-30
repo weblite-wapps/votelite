@@ -9,6 +9,7 @@
       :percentage="votesPercentage[index]"
       :voteCount="votesCount[index]"
       :selected-vote="selectedVote"
+      :showStatBeforeVoting="showStatBeforeVoting"
       :key="index"
       :index="index"
     />
@@ -28,7 +29,7 @@ export default {
 
   components: { Choice },
 
-  props: ['question', 'choices', 'votes', 'selectedVote', 'selectedChoice'],
+  props: ['question', 'choices', 'votes', 'selectedVote', 'selectedChoice', 'showStatBeforeVoting'],
 
   data: () => ({
     

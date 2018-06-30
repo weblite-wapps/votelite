@@ -1,10 +1,14 @@
 <template>
   <div :class="[$style['choice'], (selectedVote !== null) ? $style['not-button'] : null]" @click="select">
-    <div :class="$style['before-caption']">
-      <div :class="$style['choice-percentage']">
+    
+    <transition name="fade-percentage">
+      <div v-show="showStatBeforeVoting || (!showStatBeforeVoting && selectedVote !== null)" 
+          :class="$style['choice-percentage']">
         {{ percentage }}
       </div>
+    </transition>
 
+    <div :class="$style['choice-not-stat']">
       <div :class="[$style['choice-circle'], (state == 'selected') ? $style['choice-circle-selected'] : null,
       (selectedVote == index) ? $style['choice-circle-voted'] : null, (canSelect && state != 'selected') ? $style['choice-circle-selectable'] : null]">
 
@@ -13,16 +17,19 @@
           <transition :name="(selectedVote === index) ? 'fade-question-disabled' : 'fade-question'"> <p :class="$style['question-mark']" v-show="state === 'selected' && selectedVote === null" style="color: white"> ? </p> </transition>
         </div>
       </div>
+
+      <div :class="$style['choice-caption']">
+        {{ caption | trimText }}
+      </div>
     </div>
 
-    <div :class="$style['choice-caption']">
-      {{ caption | trimText }}
-    </div>
-
-    <div :class="$style['choice-vote-count']">
-      <div> {{ voteCount }} </div>
-      <div> <i> person </i> </div>
-    </div>
+    <transition name="fade-vote-count">
+      <div v-show="showStatBeforeVoting || (!showStatBeforeVoting && selectedVote !== null)"
+        :class="$style['choice-vote-count']">
+        <div> {{ voteCount }} </div>
+        <div> <i> person </i> </div>
+      </div>
+    </transition>
   </div> 
 
 </template>
@@ -33,7 +40,7 @@ import { bus } from '../main.js'
 
 export default {
   name: 'Choice',
-  props: ['caption', 'percentage', 'vote-count','index', 'selectedVote'],
+  props: ['caption', 'percentage', 'vote-count','index', 'selectedVote', 'showStatBeforeVoting'],
   data () {
     return {
       state: 'not selected', // 'not selected', 'selected', 'voted'
@@ -81,6 +88,7 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-around;
   
   width: 280px;
   height: 40px;
@@ -124,10 +132,14 @@ export default {
     background: rgba(6, 176, 255, 0.267);
 }
 
-.before-caption {
+.choice-not-stat {
+
   display: flex;
   flex-direction: row;
   justify-content: center;
+
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
 }
 
 .choice-caption {
@@ -149,15 +161,15 @@ export default {
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
-
-  font-size: 13px;
+  width: 30px;
+  font-size: 10px;
   color: rgba(199, 244, 255, 0.712); 
 }
 
 .choice-percentage {
   font-size: 12px;
-  padding-right: 7px;
-  width: 28px;
+  margin-right: 5px;
+  width: 25px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
