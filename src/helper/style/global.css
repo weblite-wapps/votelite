@@ -24,3 +24,35 @@ i {
   -ms-user-select: none;
   user-select: none;
 }
+
+.fade-question-enter-active, .fade-question-leave-active {
+  transition: all .1s;
+}
+
+.fade-question-enter {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.fade-question-leave-to {
+  opacity: 0;
+  transform: translateX(10px);
+}
+
+.fade-check-enter-active{
+  transition: all .1s;
+}
+
+.fade-check-enter {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.fade-check-leave-to {
+  opacity: 0;
+  transform: translateX(10px);
+}
+
+.move-vote-button-enter-active, .move-vote-button-leave-active {
+  transition: all .1s;
+}

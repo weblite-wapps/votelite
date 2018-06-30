@@ -84,6 +84,9 @@ export default {
   overflow-x: hidden;
 
   background: rgb(49, 49, 49);
+
+  -webkit-transition: height 0.08s ease;
+  transition: height 0.08s ease;
 }
 
 .vote-choices {

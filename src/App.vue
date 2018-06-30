@@ -8,14 +8,15 @@
     :votes="votes"
     :selectedVote="vote"
     :selectedChoice="selectedChoice"
-    @makeVote="makeVote($event)"
   />
 
-  <Button
-    v-if="vote === null && selectedChoice !== null" 
-    :label="'Vote'"
-    @click="makeVote(selectedChoice)"
-  />
+  <transition name="move-vote-button">
+    <Button
+      v-if="vote === null && selectedChoice !== null" 
+      label="Vote"
+      @click="makeVote(selectedChoice)"
+    />
+  </transition>
 
   <div
     v-if="customizeMode"

@@ -19,7 +19,6 @@ export default {
 <style module>
 .header {
   height: 50px;
-  background: rgb(131, 131, 131);
   background: #70b1d6;
   display: flex;
   justify-content: space-between;

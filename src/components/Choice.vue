@@ -8,8 +8,10 @@
       <div :class="[$style['choice-circle'], (state == 'selected') ? $style['choice-circle-selected'] : null,
       (selectedVote == index) ? $style['choice-circle-voted'] : null, (canSelect && state != 'selected') ? $style['choice-circle-selectable'] : null]">
 
-        <div v-show="state === 'selected' && selectedVote === null" transition="fade"> ? </div>
-        <div v-show="selectedVote == index"> <i> check </i> </div>
+        <transition name="fade-check"> <p :class="$style['check-mark']" v-show="selectedVote === index"> <i> check </i> </p> </transition>
+        <div v-if="selectedVote !== index">
+          <transition :name="(selectedVote === index) ? 'fade-question-disabled' : 'fade-question'"> <p :class="$style['question-mark']" v-show="state === 'selected' && selectedVote === null" style="color: white"> ? </p> </transition>
+        </div>
       </div>
     </div>
 
