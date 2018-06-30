@@ -32,5 +32,4 @@ export default {
 .button-container:hover {
   color: black;
 }
-
 </style>
