@@ -29,12 +29,12 @@
 // components
 import Header from './components/Header'
 import Vote from './components/Vote'
-import Stat from './components/Stat'
 
 import { bus } from './main.js'
 
 // helper
 import Button from './helper/components/Button'
+
 import { addVote } from './helper/functions/changeVotes'
 import webliteHandler from './helper/functions/weblite.api'
 // W
@@ -46,7 +46,6 @@ export default {
   components: {
     Header,
     Vote,
-    Stat,
     Button
   },
 
@@ -55,7 +54,7 @@ export default {
     question: 'How many do you want?',
     choices: ['choice 1', 'choice 2', 'choice 3', 'choice 4', 'choice 1', 'choice 2', 'choice 3', 'choice 4'],
     votes: [],
-    vote: null ,
+    vote: null,
     selectedChoice: null
   }),
 

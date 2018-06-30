@@ -9,7 +9,7 @@
       (selectedVote == index) ? $style['choice-circle-voted'] : null, (canSelect && state != 'selected') ? $style['choice-circle-selectable'] : null]">
 
         <div v-show="state === 'selected' && selectedVote === null" transition="fade"> ? </div>
-        <div v-show="selectedVote == index" transition="fade"> X </div>
+        <div v-show="selectedVote == index"> <i> check </i> </div>
       </div>
     </div>
 
@@ -74,7 +74,7 @@ export default {
 <style module>
 
 .choice {
-  padding: 5px 0px;
+  padding: 3.5px 0px;
 
   display: flex;
   flex-direction: row;
@@ -166,15 +166,6 @@ export default {
 .choice-percentage::before {
   content: '%';
   font-size: 10px;
-}
-
-.fade-transition {
-  transition: all 1s ease;
-  color: black;
-}
-
-.fade-enter, .fade-leave {
-  opacity: 0;
 }
 
 </style>

@@ -80,7 +80,7 @@ export default {
   flex-direction: column;
 
   padding: 15px 0;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
 
   background: rgb(49, 49, 49);
