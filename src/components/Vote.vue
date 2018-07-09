@@ -20,51 +20,54 @@
 
 
 <script>
+// components
 import Choice from './Choice.vue'
-
+// R
 const { R } = window
+
 
 export default {
   name: 'Vote',
 
   components: { Choice },
 
-  props: ['question', 'choices', 'votes', 'selectedVote', 'selectedChoice', 'showStatBeforeVoting'],
+  props: [
+    'question',
+    'choices',
+    'votes',
+    'selectedVote',
+    'selectedChoice',
+    'showStatBeforeVoting',
+  ],
 
   data: () => ({
-    
+
   }),
 
   computed: {
     votesPercentage() {
       const sum = R.sum(this.votes)
       var temp_array = []
-      
-      if (sum === 0)
-        for (let i = 0; i < this.choices.length; i++)
-          temp_array.push(0)
-      else {
-        temp_array = this.votes.map(voteNumber => Math.round((voteNumber / sum) * 100))
-      }
+
+      if (sum === 0) for (let i = 0; i < this.choices.length; i++) temp_array.push(0)
+      else temp_array = this.votes.map(voteNumber => Math.round((voteNumber / sum) * 100))
 
       return temp_array
-    }, 
+    },
+
     votesCount() {
       var temp_array = []
 
       if (R.sum(this.votes) === 0 || this.choices.length != this.votes.length)
-        for (let i = 0; i < this.choices.length; i++)
-          temp_array.push(0)
-      else
-        temp_array = this.votes
+        for (let i = 0; i < this.choices.length; i++) temp_array.push(0)
+      else temp_array = this.votes
 
       return temp_array
     },
+
     currentHeight() {
-      if (this.selectedChoice !== null && this.selectedVote === null)
-        return 228
-      else
-        return 280
+      if (this.selectedChoice !== null && this.selectedVote === null) return 228
+      else return 280
     }
   }
 }

@@ -13,7 +13,7 @@
 
   <transition name="move-vote-button">
     <Button
-      v-if="vote === null && selectedChoice !== null" 
+      v-if="vote === null && selectedChoice !== null"
       label="Vote"
       @click="makeVote(selectedChoice)"
     />
@@ -31,16 +31,14 @@
 // components
 import Header from './components/Header'
 import Vote from './components/Vote'
-
-import { bus } from './main.js'
-
-// helper
 import Button from './helper/components/Button'
-
+// helper
+import { bus } from './main.js'
 import { addVote } from './helper/functions/changeVotes'
 import webliteHandler from './helper/functions/weblite.api'
 // W
 const { W } = window
+
 
 export default {
   name: 'App',
@@ -52,22 +50,21 @@ export default {
   },
   data: () => ({
     customizeMode: false,
-    question: 'How many do you want?',
-    choices: ['choice 1', 'choice 2', 'choice 3', 'choice 4', 'choice 5', 'choice 6', 'choice 7'],
+    question: 'choose your choice?',
+    choices: ['choice 1', 'choice 2', 'choice 3', 'choice 4', 'choice 5'],
     votes: [],
     vote: null,
     selectedChoice: null,
     showStatBeforeVoting: false
   }),
-  created() { 
+
+  created() {
     W && webliteHandler(this)
-    bus.$on('choiceSelected', (index) => {
-          this.selectedChoice = index })
+    bus.$on('choiceSelected', (index) => { this.selectedChoice = index })
   },
+
   methods: {
     makeVote(vote) {
-      console.log('vote ' + vote)
-
       if (vote === null) return null
       this.vote = vote
       addVote(vote, this.choices.length)

@@ -1,20 +1,36 @@
 <template>
-  <div :class="[$style['choice'], (selectedVote !== null) ? $style['not-button'] : null]" @click="select">
-    
+  <div
+    :class="[$style['choice'], (selectedVote !== null) ? $style['not-button'] : null]"
+    @click="select"
+  >
     <transition name="fade-percentage">
-      <div v-show="showStatBeforeVoting || (!showStatBeforeVoting && selectedVote !== null)" 
+      <div v-show="showStatBeforeVoting || (!showStatBeforeVoting && selectedVote !== null)"
           :class="$style['choice-percentage']">
         {{ percentage }}
       </div>
     </transition>
 
     <div :class="$style['choice-not-stat']">
-      <div :class="[$style['choice-circle'], (state == 'selected') ? $style['choice-circle-selected'] : null,
-      (selectedVote == index) ? $style['choice-circle-voted'] : null, (canSelect && state != 'selected') ? $style['choice-circle-selectable'] : null]">
-
-        <transition name="fade-check"> <p :class="$style['check-mark']" v-show="selectedVote === index"> <i> check </i> </p> </transition>
+      <div
+        :class="[
+          $style['choice-circle'],
+          (state == 'selected') ? $style['choice-circle-selected'] : null,
+          (selectedVote == index) ? $style['choice-circle-voted'] : null,
+          (canSelect && state != 'selected') ? $style['choice-circle-selectable'] : null
+        ]"
+      >
+        <transition name="fade-check">
+          <p :class="$style['check-mark']" v-show="selectedVote === index"> <i> check </i> </p>
+        </transition>
         <div v-if="selectedVote !== index">
-          <transition :name="(selectedVote === index) ? 'fade-question-disabled' : 'fade-question'"> <p :class="$style['question-mark']" v-show="state === 'selected' && selectedVote === null" style="color: white"> ? </p> </transition>
+          <transition :name="(selectedVote === index) ? 'fade-question-disabled' : 'fade-question'">
+            <p
+              :class="$style['question-mark']"
+              v-show="state === 'selected' && selectedVote === null" style="color: white"
+            >
+              ?
+            </p>
+          </transition>
         </div>
       </div>
 
@@ -30,7 +46,7 @@
         <div> <i> person </i> </div>
       </div>
     </transition>
-  </div> 
+  </div>
 
 </template>
 
@@ -61,7 +77,7 @@ export default {
   computed: {
     canSelect () {
       return (this.selectedVote === null)
-    }, 
+    },
     shortenedCaption () {
       return this.caption.slice(0, 25)
     }
@@ -87,7 +103,7 @@ export default {
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  
+
   width: 280px;
   height: 40px;
 
@@ -122,7 +138,7 @@ export default {
 }
 
 .choice-circle-voted {
-  background: rgba(61, 147, 197, 0.767); 
+  background: rgba(61, 147, 197, 0.767);
   color: rgb(255, 235, 235);
 }
 
@@ -160,7 +176,7 @@ export default {
   justify-content: flex-end;
   width: 30px;
   font-size: 10px;
-  color: rgba(199, 244, 255, 0.712); 
+  color: rgba(199, 244, 255, 0.712);
 }
 
 .choice-percentage {
