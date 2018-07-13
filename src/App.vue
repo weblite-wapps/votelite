@@ -50,8 +50,8 @@ export default {
   },
   data: () => ({
     customizeMode: false,
-    question: 'choose your choice?',
-    choices: ['choice 1', 'choice 2', 'choice 3', 'choice 4', 'choice 5'],
+    question: '',
+    choices: [],
     votes: [],
     vote: null,
     selectedChoice: null,
@@ -65,7 +65,7 @@ export default {
 
   methods: {
     makeVote(vote) {
-      if (vote === null) return null
+      if (vote == null) return null
       this.vote = vote
       addVote(vote, this.choices.length)
       W.changeLocaldb(vote)
