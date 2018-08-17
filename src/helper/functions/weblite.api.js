@@ -11,7 +11,7 @@ export default (vueRoot) => {
   // get localDB And Customize Value
   W.loadData().then(({ localdb, customize }) => {
     vueRoot.question = customize.question
-    vueRoot.choices = customize.choices.map(R.prop('name'))
+    vueRoot.choices = customize.choices
     if(localdb != undefined) vueRoot.vote = localdb
   })
 
