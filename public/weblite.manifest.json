@@ -1,6 +1,6 @@
 {
   "name": "votelite",
-  "id": "5b7684d2955fb1774b6fa585",
+  "id": "5c35a42ef823d406d50d37fc",
   "searchable": true,
   "instancable": true,
   "creator": false,
@@ -9,8 +9,20 @@
   "width": 300,
   "height": 350,
   "customizeArray": [
-    { "type": "textField", "name": "question", "title": "Question", "description": "write your question", "detail": { "placeholder": "question" } },
-    { "type": "multipleTextField", "name": "choices", "title": "Choices", "description": "add choice", "detail": { "placeholder": "choice" } }
+    {
+      "type": "textField",
+      "name": "question",
+      "title": "Question",
+      "description": "write your question",
+      "detail": { "placeholder": "question" }
+    },
+    {
+      "type": "multipleTextField",
+      "name": "choices",
+      "title": "Choices",
+      "description": "add choice",
+      "detail": { "placeholder": "choice" }
+    }
   ],
   "servIndexes": {
     "inline": "index",
