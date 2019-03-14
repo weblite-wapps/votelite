@@ -2,7 +2,7 @@
   "name": "votelite",
   "id": "5b7684d2955fb1774b6fa585",
   "searchable": true,
-  "instancable": true,
+  "instantiable": true,
   "creator": false,
   "inline": true,
   "shareDB": true,
