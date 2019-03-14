@@ -1,36 +1,39 @@
 // W && R
-const { W, R } = window
+const { W } = window
 
-
-export default (vueRoot) => {
-  /* change mode */
-  if (W.mode === 'customize') { vueRoot.customizeMode = true }
-
-
-  /* Load localDB and Customization Data */
-  // get localDB And Customize Value
-  W.loadData().then(({ localdb, customize }) => {
-    vueRoot.question = customize.question
-    vueRoot.choices = customize.choices
-    if(localdb != undefined) vueRoot.vote = localdb
+const handleNormalMode = (start, vue) => {
+  W.share.subscribe(votes => {
+    vue.votes = votes || []
   })
 
+  Promise.all([W.loadData(), W.share.getFromServer([])]).then(data => {
+    const [
+      {
+        localdb,
+        customize: { question, choices },
+      },
+    ] = data
 
-  /* ShareDB */
-  // get votes from shareDB Server
-  W.share.getFromServer([]).then(() => W.start())
-  // shareDB sunbscription
-  W.share.subscribe((votes) => { vueRoot.votes = votes || [] })
+    vue.question = question
+    vue.choices = choices
 
-
-  /* Customization */
-  // start instantly if mode is customized
-  vueRoot.customizeMode && W.start()
-  // change on customization
-  W.onChangeValue(({ key, value }) => {
-    if (key === 'question') vueRoot.question = value
-    else if (key === 'choices') vueRoot.choices = value
+    if (localdb !== undefined) vue.vote = localdb
+    start()
   })
-  // handle customize object
-  W.changeCustomize(R.identity)
+}
+
+export default vue => {
+  W.setHooks({
+    wappWillStart(start, error, { mode }) {
+      if (mode === 'customize') {
+        vue.customizeMode = true
+        start()
+      } else handleNormalMode(start, vue)
+    },
+
+    onCustomizeValueChange({ key, value }) {
+      if (key === 'question') vue.question = value
+      else if (key === 'choices') vue.choices = value
+    },
+  })
 }

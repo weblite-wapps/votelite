@@ -91,6 +91,8 @@ export default {
 
 .vote-choices {
   margin: 7px auto;
+  height: 100vh;
+  overflow: auto;
 }
 
 .vote-question {
@@ -98,12 +100,12 @@ export default {
   text-align: center;
   font-size: 16px;
   font-weight: bold;
-
+  margin: 0 10px;
   color: rgba(220, 251, 255, 0.726);
 }
 
 .vote-question::before, .vote-question::after {
-  content: " \" ";
+  /* content: " \" "; */
   color: rgba(100, 190, 212, 0.527);
 }
 
@@ -111,8 +113,26 @@ export default {
   height: 30px;
 }
 
-::-webkit-scrollbar {
-  display: none;
+.vote-choices::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #555555;
+  border-radius: 100px;
+}
+
+.vote-choices::-webkit-scrollbar {
+  width: 10px;
+  background-color: #555555;
+  border-radius: 100px;
+}
+
+.vote-choices::-webkit-scrollbar-thumb {
+  background-color: #7bacca;
+  border: 2px solid #555555;
+  border-radius: 100px;
+}
+
+.vote-choices::-webkit-scrollbar-thumb:hover {
+  border: 5px solid #70b1d6;
 }
 
 </style>
