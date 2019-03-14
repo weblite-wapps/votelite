@@ -79,7 +79,7 @@ export default {
       return (this.selectedVote === null)
     },
     shortenedCaption () {
-      return this.caption.slice(0, 25)
+      return this.caption.slice(0, 45)
     }
   },
   created () {
@@ -157,7 +157,7 @@ export default {
 
 .choice-caption {
   width: 170px;
-  height: 30px;
+  height: 45px;
   max-width: 170px;
   padding-left: 6px;
   font-size: 14px;
