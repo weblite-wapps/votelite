@@ -1,29 +1,26 @@
 <template>
-<div :class="$style.root">
-  <Header/>
+  <div :class="$style.root">
+    <Header/>
 
-  <Vote
-    :question="question"
-    :choices="choices"
-    :votes="votes"
-    :selectedVote="vote"
-    :selectedChoice="selectedChoice"
-    :showStatBeforeVoting="showStatBeforeVoting"
-  />
-
-  <transition name="move-vote-button">
-    <Button
-      v-if="vote === null && selectedChoice !== null"
-      label="Vote"
-      @click="makeVote(selectedChoice)"
+    <Vote
+      :question="question"
+      :choices="choices"
+      :votes="votes"
+      :selectedVote="vote"
+      :selectedChoice="selectedChoice"
+      :showStatBeforeVoting="showStatBeforeVoting"
     />
-  </transition>
 
-  <div
-    v-if="customizeMode"
-    :class="$style.customize"
-  />
-</div>
+    <transition name="move-vote-button">
+      <Button
+        v-if="vote === null && selectedChoice !== null"
+        label="Vote"
+        @click="makeVote(selectedChoice)"
+      />
+    </transition>
+
+    <div v-if="customizeMode" :class="$style.customize"/>
+  </div>
 </template>
 
 
@@ -39,14 +36,13 @@ import webliteHandler from './helper/functions/weblite.api'
 // W
 const { W } = window
 
-
 export default {
   name: 'App',
 
   components: {
     Header,
     Vote,
-    Button
+    Button,
   },
   data: () => ({
     customizeMode: false,
@@ -55,12 +51,14 @@ export default {
     votes: [],
     vote: null,
     selectedChoice: null,
-    showStatBeforeVoting: false
+    showStatBeforeVoting: false,
   }),
 
   created() {
     W && webliteHandler(this)
-    bus.$on('choiceSelected', (index) => { this.selectedChoice = index })
+    bus.$on('choiceSelected', index => {
+      this.selectedChoice = index
+    })
   },
 
   methods: {
@@ -79,7 +77,7 @@ export default {
 .root {
   width: 300px;
   height: 350px;
-  background: #EEEEEE;
+  background: #eeeeee;
   border-radius: 10px;
   overflow: hidden;
 }
