@@ -26,50 +26,52 @@
 
 <script>
 // components
-import Header from './components/Header'
-import Vote from './components/Vote'
-import Button from './helper/components/Button'
+import Header from "./components/Header";
+import Vote from "./components/Vote";
+import Button from "./helper/components/Button";
 // helper
-import { bus } from './main.js'
-import { addVote } from './helper/functions/changeVotes'
-import webliteHandler from './helper/functions/weblite.api'
+import { bus } from "./main.js";
+import { addVote } from "./helper/functions/changeVotes";
+import webliteHandler from "./helper/functions/weblite.api";
 // W
-const { W } = window
+const { W } = window;
 
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
     Header,
     Vote,
-    Button,
+    Button
   },
   data: () => ({
     customizeMode: false,
-    question: '',
+    question: "",
     choices: [],
     votes: [],
+    votesById: [],
     vote: null,
     selectedChoice: null,
     showStatBeforeVoting: false,
+    userId: ""
   }),
 
   created() {
-    W && webliteHandler(this)
-    bus.$on('choiceSelected', index => {
-      this.selectedChoice = index
-    })
+    W && webliteHandler(this);
+    bus.$on("choiceSelected", index => {
+      this.selectedChoice = index;
+    });
   },
 
   methods: {
     makeVote(vote) {
-      if (vote == null) return null
-      this.vote = vote
-      addVote(vote, this.choices.length)
-      W.changeLocaldb(vote)
-    },
-  },
-}
+      if (vote == null) return null;
+      this.vote = vote;
+      addVote(vote, this.choices.length, this.userId);
+      // W.changeLocaldb(vote)
+    }
+  }
+};
 </script>
 
 
