@@ -1,25 +1,27 @@
 <template>
   <div :class="$style.root">
-    <Header/>
-
-    <Vote
-      :question="question"
-      :choices="choices"
-      :votes="votes"
-      :selectedVote="vote"
-      :selectedChoice="selectedChoice"
-      :showStatBeforeVoting="showStatBeforeVoting"
-    />
-
-    <transition name="move-vote-button">
-      <Button
-        v-if="vote === null && selectedChoice !== null"
-        label="Vote"
-        @click="makeVote(selectedChoice)"
+    <Header :page="page" :creator="creator" @changePage="changePage"/>
+    <div v-if="page==='answering'">
+      <Vote
+        :question="question"
+        :choices="choices"
+        :votes="votes"
+        :selectedVote="vote"
+        :selectedChoice="selectedChoice"
+        :showStatBeforeVoting="showStatBeforeVoting"
       />
-    </transition>
 
-    <div v-if="customizeMode" :class="$style.customize"/>
+      <transition name="move-vote-button">
+        <Button
+          v-if="vote === null && selectedChoice !== null"
+          label="Vote"
+          @click="makeVote(selectedChoice)"
+        />
+      </transition>
+
+      <div v-if="customizeMode" :class="$style.customize"/>
+    </div>
+    <Review v-else :votes="votes"/>
   </div>
 </template>
 
@@ -29,9 +31,11 @@
 import Header from "./components/Header";
 import Vote from "./components/Vote";
 import Button from "./helper/components/Button";
+import Review from "./components/Review";
 // helper
 import { bus } from "./main.js";
 import { addVote } from "./helper/functions/changeVotes";
+
 import webliteHandler from "./helper/functions/weblite.api";
 // W
 const { W } = window;
@@ -42,7 +46,8 @@ export default {
   components: {
     Header,
     Vote,
-    Button
+    Button,
+    Review
   },
   data: () => ({
     customizeMode: false,
@@ -53,7 +58,10 @@ export default {
     vote: null,
     selectedChoice: null,
     showStatBeforeVoting: false,
-    userId: ""
+    userId: "",
+    userName: "",
+    page: "answering",
+    creator: false
   }),
 
   created() {
@@ -67,8 +75,11 @@ export default {
     makeVote(vote) {
       if (vote == null) return null;
       this.vote = vote;
-      addVote(vote, this.choices.length, this.userId);
+      addVote(vote, this.choices.length, this.userName, this.userId);
       // W.changeLocaldb(vote)
+    },
+    changePage(page) {
+      this.page = page;
     }
   }
 };

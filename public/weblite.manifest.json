@@ -3,7 +3,7 @@
   "id": "5c7d3145cb652f5fc9380c4f",
   "searchable": true,
   "instantiable": true,
-  "creator": false,
+  "creator": true,
   "inline": true,
   "shareDB": true,
   "width": 300,
@@ -34,5 +34,5 @@
     "customize": "index",
     "main": "index"
   },
-  "version": "0.2.0"
+  "version": "0.2.1"
 }
