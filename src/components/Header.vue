@@ -2,8 +2,8 @@
   <div :class="$style.header">
     <span :class="$style['header-title']">Votelite</span>
 
-    <i v-if="creator && page ==='answering'" @click="changePage" class="noselect">{{ 'list' }}</i>
-    <i v-else @click="changePage" class="noselect">{{ 'poll' }}</i>
+    <i v-if="creator && page ==='answering'" @click="changePage" :class="$style.button">{{ 'list' }}</i>
+    <i v-if="!creator || page ==='review'" @click="changePage" :class="creator && $style.button">{{ 'poll' }}</i>
   </div>
 </template>
 
@@ -20,7 +20,7 @@ export default {
     changePage() {
       if (this.creator) {
         if (this.page === "answering") this.$emit("changePage", "review");
-        else if (this.creator) this.$emit("changePage", "answering");
+        else this.$emit("changePage", "answering");
       }
     }
   }
@@ -36,6 +36,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 0 10px;
+  user-select: none;
 }
 
 .header-title {
@@ -45,7 +46,7 @@ export default {
   color: rgb(0, 0, 0);
 }
 
-.noselect {
+.button {
   cursor: pointer;
 }
 </style>

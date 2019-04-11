@@ -86,9 +86,11 @@ body {
 .wrapper .container .list-container .user {
   width: 90%;
   margin: 10px auto;
+  display: flex;
+  padding-left: 10px;
   background-color: #70b1d6;
   transition: all 0.5s;
-  height: 20px;
+  height: 30px;
   border-radius: 5px;
   color: black;
 }
@@ -103,6 +105,7 @@ body {
   padding: 5px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .wrapper .container .list-container .user .list-item-inside .user-title {
   text-transform: capitalize;
