@@ -4,24 +4,18 @@ import { findVote, findVoteLength } from './helperFunctions'
 
 const handleNormalMode = (start, vue) => {
   W.share.subscribe(votes => {
-    console.log("votes ", votes)
     vue.votesById = votes || []
-    // console.log(vue.votes)
-    // console.log(findVoteLength(vue.votesById))
     vue.votes = findVoteLength(vue.votesById)
   })
 
   Promise.all([W.loadData(), W.share.getFromServer([])]).then(data => {
     const [
       {
-        // localdb,
         user: { name, id },
         creator,
         customize: { question, choices },
       },
     ] = data
-    // console.log("localdb: ", localdb)
-    // console.log("question: ", question)
     const { index } = findVote(vue.votesById, id)
     vue.vote = index === -1 ? null : index
     vue.userId = id
@@ -30,7 +24,6 @@ const handleNormalMode = (start, vue) => {
     vue.choices = choices
     vue.creator = creator
 
-    // if (localdb !== undefined) vue.vote = localdb
     start()
   })
 }

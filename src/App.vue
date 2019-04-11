@@ -21,7 +21,7 @@
 
       <div v-if="customizeMode" :class="$style.customize"/>
     </div>
-    <Review v-else :votes="votes"/>
+    <Review v-if="page!=='answering'" :votes="votesById"/>
   </div>
 </template>
 
@@ -76,7 +76,6 @@ export default {
       if (vote == null) return null;
       this.vote = vote;
       addVote(vote, this.choices.length, this.userName, this.userId);
-      // W.changeLocaldb(vote)
     },
     changePage(page) {
       this.page = page;
