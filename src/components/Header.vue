@@ -1,18 +1,30 @@
 <template>
-<div :class="$style.header">
-  <span :class="$style['header-title']">Votelite</span>
-  
-  <i class="noselect">
-    {{ 'poll' }}
-  </i>
-</div>
+  <div :class="$style.header">
+    <span :class="$style['header-title']">Votelite</span>
+
+    <i v-if="creator && page ==='answering'" @click="changePage" :class="$style.button">{{ 'list' }}</i>
+    <i v-if="!creator || page ==='review'" @click="changePage" :class="creator && $style.button">{{ 'poll' }}</i>
+  </div>
 </template>
 
 
 <script>
 export default {
-  name: 'Header',
-}
+  name: "Header",
+
+  props: {
+    creator: Boolean,
+    page: String
+  },
+  methods: {
+    changePage() {
+      if (this.creator) {
+        if (this.page === "answering") this.$emit("changePage", "review");
+        else this.$emit("changePage", "answering");
+      }
+    }
+  }
+};
 </script>
 
 
@@ -24,6 +36,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 0 10px;
+  user-select: none;
 }
 
 .header-title {
@@ -31,5 +44,9 @@ export default {
   font-weight: 510;
 
   color: rgb(0, 0, 0);
+}
+
+.button {
+  cursor: pointer;
 }
 </style>

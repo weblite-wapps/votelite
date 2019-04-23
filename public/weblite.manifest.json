@@ -3,30 +3,36 @@
   "id": "5c7d3145cb652f5fc9380c4f",
   "searchable": true,
   "instantiable": true,
-  "creator": false,
+  "creator": true,
   "inline": true,
   "shareDB": true,
   "width": 300,
   "height": 350,
+  "userInfo": true,
   "customizeArray": [
     {
       "type": "textField",
       "name": "question",
       "title": "Question",
       "description": "write your question",
-      "detail": { "placeholder": "question" }
+      "detail": {
+        "placeholder": "question"
+      }
     },
     {
       "type": "multipleTextField",
       "name": "choices",
       "title": "Choices",
       "description": "add choice",
-      "detail": { "placeholder": "choice" }
+      "detail": {
+        "placeholder": "choice"
+      }
     }
   ],
   "servIndexes": {
     "inline": "index",
     "customize": "index",
     "main": "index"
-  }
+  },
+  "version": "0.2.1"
 }

@@ -1,75 +1,87 @@
 <template>
   <div :class="$style.root">
-    <Header/>
-
-    <Vote
-      :question="question"
-      :choices="choices"
-      :votes="votes"
-      :selectedVote="vote"
-      :selectedChoice="selectedChoice"
-      :showStatBeforeVoting="showStatBeforeVoting"
-    />
-
-    <transition name="move-vote-button">
-      <Button
-        v-if="vote === null && selectedChoice !== null"
-        label="Vote"
-        @click="makeVote(selectedChoice)"
+    <Header :page="page" :creator="creator" @changePage="changePage"/>
+    <div v-if="page==='answering'">
+      <Vote
+        :question="question"
+        :choices="choices"
+        :votes="votes"
+        :selectedVote="vote"
+        :selectedChoice="selectedChoice"
+        :showStatBeforeVoting="showStatBeforeVoting"
       />
-    </transition>
 
-    <div v-if="customizeMode" :class="$style.customize"/>
+      <transition name="move-vote-button">
+        <Button
+          v-if="vote === null && selectedChoice !== null"
+          label="Vote"
+          @click="makeVote(selectedChoice)"
+        />
+      </transition>
+
+      <div v-if="customizeMode" :class="$style.customize"/>
+    </div>
+    <Review v-else :votes="votesById"/>
   </div>
 </template>
 
 
 <script>
 // components
-import Header from './components/Header'
-import Vote from './components/Vote'
-import Button from './helper/components/Button'
+import Header from "./components/Header";
+import Vote from "./components/Vote";
+import Button from "./helper/components/Button";
+import Review from "./components/Review";
 // helper
-import { bus } from './main.js'
-import { addVote } from './helper/functions/changeVotes'
-import webliteHandler from './helper/functions/weblite.api'
+import { bus } from "./main.js";
+import { addVote } from "./helper/functions/changeVotes";
+
+import webliteHandler from "./helper/functions/weblite.api";
 // W
-const { W } = window
+const { W } = window;
 
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
     Header,
     Vote,
     Button,
+    Review
   },
   data: () => ({
     customizeMode: false,
-    question: '',
+    question: "",
     choices: [],
     votes: [],
+    votesById: [],
     vote: null,
     selectedChoice: null,
     showStatBeforeVoting: false,
+    userId: "",
+    userName: "",
+    page: "answering",
+    creator: false
   }),
 
   created() {
-    W && webliteHandler(this)
-    bus.$on('choiceSelected', index => {
-      this.selectedChoice = index
-    })
+    W && webliteHandler(this);
+    bus.$on("choiceSelected", index => {
+      this.selectedChoice = index;
+    });
   },
 
   methods: {
     makeVote(vote) {
-      if (vote == null) return null
-      this.vote = vote
-      addVote(vote, this.choices.length)
-      W.changeLocaldb(vote)
+      if (vote == null) return null;
+      this.vote = vote;
+      addVote(vote, this.choices.length, this.userName, this.userId);
     },
-  },
-}
+    changePage(page) {
+      this.page = page;
+    }
+  }
+};
 </script>
 
 

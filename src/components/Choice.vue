@@ -157,7 +157,6 @@ export default {
 
 .choice-caption {
   width: 170px;
-  height: 45px;
   max-width: 170px;
   padding-left: 6px;
   font-size: 14px;
