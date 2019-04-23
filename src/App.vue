@@ -76,9 +76,11 @@ export default {
       if (vote == null) return null;
       this.vote = vote;
       addVote(vote, this.choices.length, this.userName, this.userId);
+      W.analytics("MAKE_VOTE")
     },
     changePage(page) {
       this.page = page;
+      W.analytics("CHANGE_PAGE", { to: this.page })
     }
   }
 };
