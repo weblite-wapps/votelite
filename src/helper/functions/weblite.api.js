@@ -1,6 +1,7 @@
-// W && R
-const { W } = window
 import { findVote, findVoteLength } from './helperFunctions'
+
+// W
+const { W } = window
 
 const handleNormalMode = (start, vue) => {
   W.share.subscribe(votes => {

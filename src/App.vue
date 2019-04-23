@@ -21,7 +21,7 @@
 
       <div v-if="customizeMode" :class="$style.customize"/>
     </div>
-    <Review v-if="page!=='answering'" :votes="votesById"/>
+    <Review v-else :votes="votesById"/>
   </div>
 </template>
 
