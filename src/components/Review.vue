@@ -49,18 +49,17 @@ body {
 }
 .wrapper {
   width: 100%;
-  height: 100%;
+  height: calc(100% - 50px);
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #0a1721;
+  overflow: auto;
 }
 .wrapper .container {
-  /* position: relative; */
   width: 100%;
   height: 100%;
-  background-color: #0a1721;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
-  overflow: auto;
 }
 
 ::-webkit-scrollbar-track {
@@ -110,20 +109,4 @@ body {
 .wrapper .container .list-container .user .list-item-inside .user-title {
   text-transform: capitalize;
 }
-
-/* .user-group-enter-to {
-  opacity: 1;
-  transform: translateX(0%);
-}
-.user-group-leave-active {
-}
-.user-group-group-move {
-  opacity: 1;
-  transition: all 0.5s;
-}
-.user-group-enter,
-.user-group-leave-to {
-  opacity: 0;
-  transform: translateX(-100%); 
-} */
 </style>
