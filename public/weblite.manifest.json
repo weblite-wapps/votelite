@@ -9,8 +9,7 @@
   "width": 300,
   "height": 350,
   "userInfo": true,
-  "customizeArray": [
-    {
+  "customizeArray": [{
       "type": "textField",
       "name": "question",
       "title": "Question",
@@ -34,5 +33,5 @@
     "customize": "index",
     "main": "index"
   },
-  "version": "0.2.1"
+  "version": "0.2.2"
 }
