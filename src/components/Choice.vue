@@ -4,10 +4,10 @@
     @click="select"
   >
     <transition name="fade-percentage">
-      <div v-show="showStatBeforeVoting || (!showStatBeforeVoting && selectedVote !== null)"
-          :class="$style['choice-percentage']">
-        {{ percentage }}
-      </div>
+      <div
+        v-show="showStatBeforeVoting || (!showStatBeforeVoting && selectedVote !== null)"
+        :class="$style['choice-percentage']"
+      >{{ percentage }}</div>
     </transition>
 
     <div :class="$style['choice-not-stat']">
@@ -20,34 +20,36 @@
         ]"
       >
         <transition name="fade-check">
-          <p :class="$style['check-mark']" v-show="selectedVote === index"> <i> check </i> </p>
+          <p :class="$style['check-mark']" v-show="selectedVote === index">
+            <i>check</i>
+          </p>
         </transition>
         <div v-if="selectedVote !== index">
           <transition :name="(selectedVote === index) ? 'fade-question-disabled' : 'fade-question'">
             <p
               :class="$style['question-mark']"
-              v-show="state === 'selected' && selectedVote === null" style="color: white"
-            >
-              ?
-            </p>
+              v-show="state === 'selected' && selectedVote === null"
+              style="color: white"
+            >?</p>
           </transition>
         </div>
       </div>
 
-      <div :class="$style['choice-caption']">
-        {{ shortenedCaption }}
-      </div>
+      <div :class="$style['choice-caption']">{{ shortenedCaption }}</div>
     </div>
 
     <transition name="fade-vote-count">
-      <div v-show="showStatBeforeVoting || (!showStatBeforeVoting && selectedVote !== null)"
-        :class="$style['choice-vote-count']">
-        <div> {{ voteCount }} </div>
-        <div> <i> person </i> </div>
+      <div
+        v-show="showStatBeforeVoting || (!showStatBeforeVoting && selectedVote !== null)"
+        :class="$style['choice-vote-count']"
+      >
+        <div>{{ voteCount }}</div>
+        <div>
+          <i>person</i>
+        </div>
       </div>
     </transition>
   </div>
-
 </template>
 
 
@@ -104,7 +106,7 @@ export default {
   align-items: center;
   justify-content: space-around;
 
-  width: 280px;
+  width: 100%;
   height: 40px;
 
   -webkit-user-select: none; /* Safari 3.1+ */
@@ -156,7 +158,7 @@ export default {
 }
 
 .choice-caption {
-  width: 170px;
+  width: 100%;
   max-width: 170px;
   padding-left: 6px;
   font-size: 14px;

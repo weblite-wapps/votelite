@@ -1,21 +1,20 @@
 <template>
-<div :class="$style['vote-container']"
-     :style="{height: currentHeight + 'px'}">
-  <div :class="$style['vote-question']">{{ question }}</div>
-  <div :class="$style['vote-choices']">
-    <Choice
-      v-for="(choice, index) in choices"
-      :caption="choice"
-      :percentage="votesPercentage[index]"
-      :voteCount="votesCount[index]"
-      :selected-vote="selectedVote"
-      :showStatBeforeVoting="showStatBeforeVoting"
-      :key="index"
-      :index="index"
-    />
+  <div :class="$style['vote-container']" :style="{height: currentHeight + 'px'}">
+    <div :class="$style['vote-question']">{{ question }}</div>
+    <div :class="$style['vote-choices']">
+      <Choice
+        v-for="(choice, index) in choices"
+        :caption="choice"
+        :percentage="votesPercentage[index]"
+        :voteCount="votesCount[index]"
+        :selected-vote="selectedVote"
+        :showStatBeforeVoting="showStatBeforeVoting"
+        :key="index"
+        :index="index"
+      />
+    </div>
+    <div :class="$style['bottom']"/>
   </div>
-  <div :class="$style['bottom']" />
-</div>
 </template>
 
 
@@ -92,6 +91,7 @@ export default {
 .vote-choices {
   margin: 7px auto;
   height: 100vh;
+  width: 100%;
   overflow: auto;
 }
 
