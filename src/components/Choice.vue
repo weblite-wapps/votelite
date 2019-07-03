@@ -106,7 +106,7 @@ export default {
   align-items: center;
   justify-content: space-around;
 
-  width: 100%;
+  width: 280px;
   height: 40px;
 
   -webkit-user-select: none; /* Safari 3.1+ */
@@ -158,7 +158,7 @@ export default {
 }
 
 .choice-caption {
-  width: 100%;
+  width: 170px;
   max-width: 170px;
   padding-left: 6px;
   font-size: 14px;
