@@ -1,6 +1,14 @@
 <template>
   <div :class="$style.root">
-    <Header :page="page" :creator="creator" @changePage="changePage"/>
+    <Header
+      :choices="choices"
+      :votes="votesById"
+      :showStatBeforeVoting="showStatBeforeVoting"
+      :page="page"
+      :creator="creator"
+      @changePage="changePage"
+    />
+
     <div v-if="page==='answering'">
       <Vote
         :question="question"
@@ -21,6 +29,7 @@
 
       <div v-if="customizeMode" :class="$style.customize"/>
     </div>
+
     <Review v-else :votes="votesById"/>
   </div>
 </template>

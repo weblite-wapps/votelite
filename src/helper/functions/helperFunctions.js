@@ -16,3 +16,9 @@ export const findVoteLength = R.reduce((acc, item) => acc.concat(R.length(item))
 
 
 export const getMembers = (arr) => R.reduce((acc, item) => acc.concat(item), [])(arr)
+
+
+export const getChartData = (votes, choices) => R.compose(
+    R.prepend(['choices', 'number of votes']),
+    choices => choices.map((choice, index) => [choice, votes[index].length]),
+)(choices)

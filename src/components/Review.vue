@@ -30,7 +30,7 @@ export default {
   created() {
     this.users = getMembers(this.votes);
   }
-};
+}
 </script>
 
 
