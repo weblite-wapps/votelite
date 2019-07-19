@@ -2,6 +2,7 @@
   <div :class="$style.root">
     <Header
       :choices="choices"
+      :question="question"
       :votes="votesById"
       :showStatBeforeVoting="showStatBeforeVoting"
       :page="page"

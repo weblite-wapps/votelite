@@ -19,6 +19,7 @@ export default {
 
   props: {
     creator: Boolean,
+    question: String,
     showStatBeforeVoting: Boolean,
     page: String,
     votes: Array,
@@ -36,7 +37,10 @@ export default {
     sendToChat() {
       W.sendMessageToCurrentChat('wapp', {
         wappId: '5d316d515e95591a52e9f78f',
-        customize: { data: getChartData(this.votes, this.choices) },
+        customize: {
+          data: getChartData(this.votes, this.choices),
+          title: this.question,
+        },
       })
       W.analytics('SNED_CHART')
     },
