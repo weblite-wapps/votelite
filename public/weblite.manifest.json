@@ -1,6 +1,6 @@
 {
-  "name": "votelite",
-  "id": "5c7d3145cb652f5fc9380c4f",
+  "name": "votelite-test",
+  "id": "5d4a63d0c5bdd119aa308a99",
   "searchable": true,
   "instantiable": true,
   "creator": true,
@@ -9,7 +9,8 @@
   "width": 300,
   "height": 350,
   "userInfo": true,
-  "customizeArray": [{
+  "customizeArray": [
+    {
       "type": "textField",
       "name": "question",
       "title": "Question",
