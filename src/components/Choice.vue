@@ -54,76 +54,83 @@
 
 
 <script>
-import { bus } from '../main.js'
+import { bus } from "../main.js";
 
 export default {
-  name: 'Choice',
-  props: ['caption', 'percentage', 'vote-count','index', 'selectedVote', 'showStatBeforeVoting'],
-  data () {
+  name: "Choice",
+  props: [
+    "caption",
+    "percentage",
+    "vote-count",
+    "index",
+    "selectedVote",
+    "showStatBeforeVoting"
+  ],
+  data() {
     return {
-      state: 'not selected', // 'not selected', 'selected', 'voted'
-    }
+      state: "not selected" // 'not selected', 'selected', 'voted'
+    };
   },
   methods: {
-    select () {
-      if (this.state == 'not selected' && this.canSelect) {
-        this.state = 'selected'
-        bus.$emit('choiceSelected', this.index)
-      }
-      else if (this.state == 'selected') {
-        this.state = 'not selected'
-        bus.$emit('choiceSelected', null)
+    select() {
+      if (this.state == "not selected" && this.canSelect) {
+        this.state = "selected";
+        bus.$emit("choiceSelected", this.index);
+      } else if (this.state == "selected") {
+        this.state = "not selected";
+        bus.$emit("choiceSelected", null);
       }
     }
   },
   computed: {
-    canSelect () {
-      return (this.selectedVote === null)
+    canSelect() {
+      return this.selectedVote === null;
     },
-    shortenedCaption () {
-      return this.caption.slice(0, 45)
+    shortenedCaption() {
+      return this.caption.slice(0, 45);
     }
   },
-  created () {
-    if (this.selectedVote === this.index) this.state = 'voted'
-    else this.state = 'not selected'
+  created() {
+    if (this.selectedVote === this.index) this.state = "voted";
+    else this.state = "not selected";
 
-    bus.$on('choiceSelected', (index) => {
-      if (index != this.index) { this.state = 'not selected' }
-    })
+    bus.$on("choiceSelected", index => {
+      if (index != this.index) {
+        this.state = "not selected";
+      }
+    });
   }
-}
+};
 </script>
 
 
 <style module>
-
 .choice {
   padding: 3.5px 0px;
-
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-
-  width: 280px;
-  height: 40px;
-
+  width: 100%;
+  min-height: 50px;
   -webkit-user-select: none; /* Safari 3.1+ */
   -moz-user-select: none; /* Firefox 2+ */
   -ms-user-select: none; /* IE 10+ */
   user-select: none; /* Standard syntax */
-
   cursor: pointer;
 }
 
+.choice , .choice * {
+  box-sizing: border-box;
+}
+
 .not-button {
- cursor: default;
+  cursor: default;
 }
 
 .choice-circle {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   border-radius: 10px;
   display: flex;
   justify-content: center;
@@ -145,22 +152,23 @@ export default {
 }
 
 .choice-circle.choice-circle-selectable:hover {
-    background: rgba(6, 176, 255, 0.267);
+  background: rgba(6, 176, 255, 0.267);
 }
 
 .choice-not-stat {
+  width: calc(100% - 57px);
   display: flex;
+  height: 100%;
+  align-items: center;
   flex-direction: row;
   justify-content: center;
-
-  -webkit-transition: all .2s ease;
-  transition: all .2s ease;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .choice-caption {
-  width: 170px;
-  max-width: 170px;
-  padding-left: 6px;
+  width: calc(100% - 35px);
+  margin: auto 7px;
   font-size: 14px;
   overflow: hidden;
 
@@ -187,13 +195,13 @@ export default {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-
   color: rgba(213, 247, 255, 0.712);
 }
 
 .choice-percentage::before {
-  content: '%';
+  content: "%";
   font-size: 10px;
 }
+
 
 </style>

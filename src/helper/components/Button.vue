@@ -16,8 +16,9 @@ export default {
 
 <style module>
 .button-container {
+  box-sizing: border-box;
   width: 100%;
-  height: 40px;
+  height: 35px;
   background: inherit;
   outline: none;
   cursor: pointer;

@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.header">
-    <span :class="$style['header-title']">Votelite</span>
+    <span :class="$style['header-title']">Votelite [test]</span>
 
     <i v-if="creator && page ==='answering'" @click="changePage" :class="$style.button">{{ 'list' }}</i>
     <i v-if="!creator || page ==='review'" @click="changePage" :class="creator && $style.button">{{ 'poll' }}</i>
@@ -52,12 +52,13 @@ export default {
 <style module>
 .header {
   height: 50px;
-  background: #70b1d6;
+  background: red;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 10px;
   user-select: none;
+  box-sizing: border-box;
 }
 
 .header-title {
