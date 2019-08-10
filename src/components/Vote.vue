@@ -99,6 +99,7 @@ export default {
 }
 
 .vote-question {
+  word-break: break-all;
   box-sizing: border-box;
   widows: 100%;
   padding-bottom: 10px;

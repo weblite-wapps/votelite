@@ -171,7 +171,7 @@ export default {
   margin: auto 7px;
   font-size: 14px;
   overflow: hidden;
-
+  word-break: break-all;
   color: rgba(255, 255, 255, 0.61);
 
   display: flex;
