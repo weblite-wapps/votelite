@@ -54,53 +54,53 @@
 
 
 <script>
-import { bus } from "../main.js";
+import { bus } from '../main.js'
 
 export default {
-  name: "Choice",
+  name: 'Choice',
   props: [
-    "caption",
-    "percentage",
-    "vote-count",
-    "index",
-    "selectedVote",
-    "showStatBeforeVoting"
+    'caption',
+    'percentage',
+    'vote-count',
+    'index',
+    'selectedVote',
+    'showStatBeforeVoting',
   ],
   data() {
     return {
-      state: "not selected" // 'not selected', 'selected', 'voted'
-    };
+      state: 'not selected', // 'not selected', 'selected', 'voted'
+    }
   },
   methods: {
     select() {
-      if (this.state == "not selected" && this.canSelect) {
-        this.state = "selected";
-        bus.$emit("choiceSelected", this.index);
-      } else if (this.state == "selected") {
-        this.state = "not selected";
-        bus.$emit("choiceSelected", null);
+      if (this.state == 'not selected' && this.canSelect) {
+        this.state = 'selected'
+        bus.$emit('choiceSelected', this.index)
+      } else if (this.state == 'selected') {
+        this.state = 'not selected'
+        bus.$emit('choiceSelected', null)
       }
-    }
+    },
   },
   computed: {
     canSelect() {
-      return this.selectedVote === null;
+      return this.selectedVote === null
     },
     shortenedCaption() {
-      return this.caption.slice(0, 45);
-    }
+      return this.caption.slice(0, 45)
+    },
   },
   created() {
-    if (this.selectedVote === this.index) this.state = "voted";
-    else this.state = "not selected";
+    if (this.selectedVote === this.index) this.state = 'voted'
+    else this.state = 'not selected'
 
-    bus.$on("choiceSelected", index => {
+    bus.$on('choiceSelected', index => {
       if (index != this.index) {
-        this.state = "not selected";
+        this.state = 'not selected'
       }
-    });
-  }
-};
+    })
+  },
+}
 </script>
 
 
@@ -120,7 +120,8 @@ export default {
   cursor: pointer;
 }
 
-.choice , .choice * {
+.choice,
+.choice * {
   box-sizing: border-box;
 }
 
@@ -199,9 +200,7 @@ export default {
 }
 
 .choice-percentage::before {
-  content: "%";
+  content: '%';
   font-size: 10px;
 }
-
-
 </style>

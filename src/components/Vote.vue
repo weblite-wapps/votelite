@@ -20,57 +20,58 @@
 
 <script>
 // components
-import Choice from "./Choice.vue";
+import Choice from './Choice.vue'
 // R
-const { R } = window;
+const { R } = window
 
 export default {
-  name: "Vote",
+  name: 'Vote',
 
   components: { Choice },
 
   props: [
-    "question",
-    "choices",
-    "votes",
-    "selectedVote",
-    "selectedChoice",
-    "showStatBeforeVoting"
+    'question',
+    'choices',
+    'votes',
+    'selectedVote',
+    'selectedChoice',
+    'showStatBeforeVoting',
   ],
 
   data: () => ({}),
 
   computed: {
     votesPercentage() {
-      const sum = R.sum(this.votes);
-      var temp_array = [];
+      const sum = R.sum(this.votes)
+      var temp_array = []
 
       if (sum === 0)
-        for (let i = 0; i < this.choices.length; i++) temp_array.push(0);
+        for (let i = 0; i < this.choices.length; i++) temp_array.push(0)
       else
         temp_array = this.votes.map(voteNumber =>
-          Math.round((voteNumber / sum) * 100)
-        );
+          Math.round((voteNumber / sum) * 100),
+        )
 
-      return temp_array;
+      return temp_array
     },
 
     votesCount() {
-      var temp_array = [];
+      var temp_array = []
 
       if (R.sum(this.votes) === 0 || this.choices.length != this.votes.length)
-        for (let i = 0; i < this.choices.length; i++) temp_array.push(0);
-      else temp_array = this.votes;
+        for (let i = 0; i < this.choices.length; i++) temp_array.push(0)
+      else temp_array = this.votes
 
-      return temp_array;
+      return temp_array
     },
 
     subtractedHeight() {
-      if (this.selectedChoice !== null && this.selectedVote === null) return 35 + 50;
-      else return 50; //50px for header and 35px for vote button
-    }
-  }
-};
+      if (this.selectedChoice !== null && this.selectedVote === null)
+        return 35 + 50
+      else return 50 //50px for header and 35px for vote button
+    },
+  },
+}
 </script>
 
 
