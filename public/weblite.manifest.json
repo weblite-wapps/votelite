@@ -9,7 +9,8 @@
   "width": 300,
   "height": 350,
   "userInfo": true,
-  "customizeArray": [{
+  "customizeArray": [
+    {
       "type": "textField",
       "name": "question",
       "title": "Question",

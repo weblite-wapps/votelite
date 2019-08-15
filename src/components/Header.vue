@@ -3,8 +3,16 @@
     <span :class="$style['header-title']">Votelite</span>
 
     <i v-if="creator && page ==='answering'" @click="changePage" :class="$style.button">{{ 'list' }}</i>
-    <i v-if="!creator || page ==='review'" @click="changePage" :class="creator && $style.button">{{ 'poll' }}</i>
-    <i v-if="page ==='answering' && !showStatBeforeVoting" @click="sendToChat" :class="$style.button">{{ 'send' }}</i>
+    <i
+      v-if="!creator || page ==='review'"
+      @click="changePage"
+      :class="creator && $style.button"
+    >{{ 'poll' }}</i>
+    <i
+      v-if="page ==='answering' && !showStatBeforeVoting"
+      @click="sendToChat"
+      :class="$style.button"
+    >{{ 'send' }}</i>
   </div>
 </template>
 
@@ -15,7 +23,7 @@ import { getChartData } from '../helper/functions/helperFunctions'
 const { W } = window
 
 export default {
-  name: "Header",
+  name: 'Header',
 
   props: {
     creator: Boolean,
@@ -29,8 +37,8 @@ export default {
   methods: {
     changePage() {
       if (this.creator) {
-        if (this.page === "answering") this.$emit("changePage", "review");
-        else this.$emit("changePage", "answering");
+        if (this.page === 'answering') this.$emit('changePage', 'review')
+        else this.$emit('changePage', 'answering')
       }
     },
 
@@ -44,7 +52,7 @@ export default {
       })
       W.analytics('SNED_CHART')
     },
-  }
+  },
 }
 </script>
 
@@ -58,6 +66,7 @@ export default {
   align-items: center;
   padding: 0 10px;
   user-select: none;
+  box-sizing: border-box;
 }
 
 .header-title {

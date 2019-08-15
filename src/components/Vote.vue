@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style['vote-container']" :style="{height: currentHeight + 'px'}">
+  <div :class="$style['vote-container']" :style="{height: `calc(100% - ${subtractedHeight}px)`}">
     <div :class="$style['vote-question']">{{ question }}</div>
     <div :class="$style['vote-choices']">
       <Choice
@@ -13,7 +13,6 @@
         :index="index"
       />
     </div>
-    <div :class="$style['bottom']"/>
   </div>
 </template>
 
@@ -23,7 +22,6 @@
 import Choice from './Choice.vue'
 // R
 const { R } = window
-
 
 export default {
   name: 'Vote',
@@ -39,17 +37,17 @@ export default {
     'showStatBeforeVoting',
   ],
 
-  data: () => ({
-
-  }),
-
   computed: {
     votesPercentage() {
       const sum = R.sum(this.votes)
       var temp_array = []
 
-      if (sum === 0) for (let i = 0; i < this.choices.length; i++) temp_array.push(0)
-      else temp_array = this.votes.map(voteNumber => Math.round((voteNumber / sum) * 100))
+      if (sum === 0)
+        for (let i = 0; i < this.choices.length; i++) temp_array.push(0)
+      else
+        temp_array = this.votes.map(voteNumber =>
+          Math.round((voteNumber / sum) * 100),
+        )
 
       return temp_array
     },
@@ -64,11 +62,12 @@ export default {
       return temp_array
     },
 
-    currentHeight() {
-      if (this.selectedChoice !== null && this.selectedVote === null) return 228
-      else return 280
-    }
-  }
+    subtractedHeight() {
+      if (this.selectedChoice !== null && this.selectedVote === null)
+        return 35 + 50
+      else return 50 //50px for header and 35px for vote button
+    },
+  },
 }
 </script>
 
@@ -77,24 +76,28 @@ export default {
 .vote-container {
   display: flex;
   flex-direction: column;
-
-  padding: 15px 0;
+  box-sizing: border-box;
+  padding-top: 15px;
   overflow-y: auto;
   overflow-x: hidden;
-
   background: rgb(49, 49, 49);
-
   -webkit-transition: height 0.08s ease;
   transition: height 0.08s ease;
 }
 
 .vote-choices {
-  margin: 7px auto;
+  box-sizing: border-box;
+  padding: 0 10px;
+  margin: 7px 0 15px;
   height: 100vh;
+  width: 100vw;
   overflow: auto;
 }
 
 .vote-question {
+  word-break: break-all;
+  box-sizing: border-box;
+  widows: 100%;
   padding-bottom: 10px;
   text-align: center;
   font-size: 16px;
@@ -103,13 +106,10 @@ export default {
   color: rgba(220, 251, 255, 0.726);
 }
 
-.vote-question::before, .vote-question::after {
+.vote-question::before,
+.vote-question::after {
   /* content: " \" "; */
   color: rgba(100, 190, 212, 0.527);
-}
-
-.bottom {
-  height: 30px;
 }
 
 .vote-choices::-webkit-scrollbar-track {
@@ -133,5 +133,4 @@ export default {
 .vote-choices::-webkit-scrollbar-thumb:hover {
   border: 5px solid #70b1d6;
 }
-
 </style>

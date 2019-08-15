@@ -7,7 +7,7 @@ import './helper/style/transitions.css'
 // components
 import App from './App.vue'
 
-export const bus = new Vue();
+export const bus = new Vue()
 
 Vue.config.productionTip = false
 new Vue({ render: h => h(App) }).$mount('#app')

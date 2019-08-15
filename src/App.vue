@@ -10,7 +10,7 @@
       @changePage="changePage"
     />
 
-    <div v-if="page==='answering'">
+    <template v-if="page==='answering'">
       <Vote
         :question="question"
         :choices="choices"
@@ -29,7 +29,7 @@
       </transition>
 
       <div v-if="customizeMode" :class="$style.customize"/>
-    </div>
+    </template>
 
     <Review v-else :votes="votesById"/>
   </div>
@@ -99,11 +99,12 @@ export default {
 
 <style module>
 .root {
-  width: 300px;
-  height: 350px;
+  width: 100%;
+  height: 100%;
   background: #eeeeee;
   border-radius: 10px;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .customize {
