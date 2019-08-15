@@ -13,7 +13,6 @@
         :index="index"
       />
     </div>
-    <div :class="$style['bottom']" />
   </div>
 </template>
 
@@ -37,8 +36,6 @@ export default {
     'selectedChoice',
     'showStatBeforeVoting',
   ],
-
-  data: () => ({}),
 
   computed: {
     votesPercentage() {
@@ -83,9 +80,7 @@ export default {
   padding-top: 15px;
   overflow-y: auto;
   overflow-x: hidden;
-
   background: rgb(49, 49, 49);
-
   -webkit-transition: height 0.08s ease;
   transition: height 0.08s ease;
 }
@@ -93,7 +88,7 @@ export default {
 .vote-choices {
   box-sizing: border-box;
   padding: 0 10px;
-  margin: 7px 0;
+  margin: 7px 0 15px;
   height: 100vh;
   width: 100vw;
   overflow: auto;
@@ -115,10 +110,6 @@ export default {
 .vote-question::after {
   /* content: " \" "; */
   color: rgba(100, 190, 212, 0.527);
-}
-
-.bottom {
-  height: 5%;
 }
 
 .vote-choices::-webkit-scrollbar-track {
